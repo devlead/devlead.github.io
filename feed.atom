@@ -4,8 +4,74 @@
 	<title>@devlead - Mattias Karlsson's Blog</title>
 	<link rel="self" href="https://www.devlead.se/" />
 	<rights>© Mattias Karlsson 2026</rights>
-	<updated>2026-02-11T12:47:27Z</updated>
+	<updated>2026-02-26T22:34:30Z</updated>
 	<logo>https://cdn.devlead.se/clipimg-vscode/2021/01/11/1f2af322-a19f-753d-bd3e-00118dc674f1.png?sv=2019-12-12&amp;st=2021-01-10T15%253A16%253A48Z&amp;se=2031-01-11T15%253A16%253A48Z&amp;sr=b&amp;sp=r&amp;sig=RYHdZjTvO%252Fw0tUGsgnIiGJRhTiQQPHnEsSKtnV14Yoc%253D</logo>
+	<entry>
+		<id>https://www.devlead.se/posts/2026/2026-02-26-renovate-csharp-file-based-apps</id>
+		<title>Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk</title>
+		<author>
+			<name>devlead</name>
+		</author>
+		<link href="https://www.devlead.se/posts/2026/2026-02-26-renovate-csharp-file-based-apps" />
+		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2026/02/26/a39f98b5-b854-48a8-a44b-2affb1b8d043.png?sp=r&amp;st=2026-02-26T22:10:14Z&amp;se=2036-02-27T06:25:14Z&amp;spr=https&amp;sv=2024-11-04&amp;sr=b&amp;sig=FIy9HlptIfMEwPF9kW3iJoNqz6iN%252BMMqX%252BezOGZ9DNM%253D" />
+		<updated>2026-02-26T00:00:00Z</updated>
+		<content>&lt;p&gt;&lt;a href="https://github.com/renovatebot/renovate"&gt;Mend Renovate&lt;/a&gt; automates dependency updates by opening pull requests when newer versions of your dependencies are available. Until recently, if you used .NET single-file scripts or &lt;a href="https://cakebuild.net/docs/running-builds/runners/cake-sdk"&gt;Cake.Sdk&lt;/a&gt; build scripts written in C# (e.g. &lt;code&gt;cake.cs&lt;/code&gt; or &lt;code&gt;build.cs&lt;/code&gt;), Renovate did not look inside those files. Two merged changes fix that: the NuGet manager now understands &lt;code&gt;#:sdk&lt;/code&gt; and &lt;code&gt;#:package&lt;/code&gt; directives in C# files, and the Cake manager can extract and update packages from &lt;a href="https://cakebuild.net/docs/writing-builds/sdk/tools"&gt;&lt;code&gt;InstallTool&lt;/code&gt;&lt;/a&gt; and &lt;code&gt;InstallTools&lt;/code&gt; calls. In this post I'll summarize what was added and how to enable it in your repo.&lt;/p&gt;
+&lt;h2 id="what-changed"&gt;What Changed&lt;/h2&gt;
+&lt;p&gt;.NET 10 introduced &lt;a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/"&gt;file-based execution&lt;/a&gt; for single-file C# apps. In that model, dependencies are declared with &lt;code&gt;#:sdk&lt;/code&gt; and &lt;code&gt;#:package&lt;/code&gt; at the top of the file instead of in a &lt;code&gt;.csproj&lt;/code&gt;. Cake.Sdk uses the same mechanism for build scripts, and tools are installed via &lt;code&gt;InstallTool()&lt;/code&gt; or &lt;code&gt;InstallTools()&lt;/code&gt; rather than the old &lt;code&gt;#tool&lt;/code&gt; directive. Renovate's default file patterns only include project and config files (e.g. &lt;code&gt;.csproj&lt;/code&gt;, &lt;code&gt;global.json&lt;/code&gt;, &lt;code&gt;dotnet-tools.json&lt;/code&gt;), so it did not previously scan plain &lt;code&gt;.cs&lt;/code&gt; files. That meant dependencies in &lt;code&gt;cake.cs&lt;/code&gt; or other single-file C# scripts were never considered for updates.&lt;/p&gt;
+&lt;p&gt;Two pull requests extend Renovate to support these formats:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/renovatebot/renovate/pull/40040"&gt;feat(manager/nuget): Support single file package directives&lt;/a&gt;&lt;/strong&gt; (merged in &lt;a href="https://github.com/renovatebot/renovate/releases/tag/43.26.0"&gt;v43.26.0&lt;/a&gt;)&lt;br /&gt;
+The NuGet manager can now extract and update dependencies from C# files that use &lt;code&gt;#:sdk&lt;/code&gt; and &lt;code&gt;#:package&lt;/code&gt;. Because the target files are regular source files, they are not part of the default &lt;code&gt;managerFilePatterns&lt;/code&gt;. You must add the patterns you want (e.g. &lt;code&gt;/\\.cs$/&lt;/code&gt; or something narrower) in your Renovate config.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;a href="https://github.com/renovatebot/renovate/pull/40070"&gt;feat(manager/cake): Support extracting nuget packages from InstallTools helper methods&lt;/a&gt;&lt;/strong&gt; (merged in &lt;a href="https://github.com/renovatebot/renovate/releases/tag/43.41.0"&gt;v43.41.0&lt;/a&gt;)&lt;br /&gt;
+The Cake manager gains support for single-file Cake.Sdk build scripts. It can extract NuGet package references from &lt;code&gt;InstallTool()&lt;/code&gt; and &lt;code&gt;InstallTools()&lt;/code&gt; method parameters (e.g. &lt;code&gt;InstallTool(&amp;quot;dotnet:https://api.nuget.org/v3/index.json?package=DPI&amp;amp;version=2025.12.17.349&amp;quot;);&lt;/code&gt;). By default the Cake manager still only matches &lt;code&gt;*.cake&lt;/code&gt; files, so to have Renovate process C# Cake scripts you need to extend the Cake manager's file patterns in config.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So in practice: use the &lt;strong&gt;NuGet&lt;/strong&gt; manager for &lt;code&gt;#:sdk&lt;/code&gt; and &lt;code&gt;#:package&lt;/code&gt; in any C# file, and use the &lt;strong&gt;Cake&lt;/strong&gt; manager for Cake-specific constructs (including &lt;code&gt;InstallTool(s)&lt;/code&gt;) in C# files. For a typical &lt;code&gt;cake.cs&lt;/code&gt; you will often enable both and let each manager handle the directives it understands.&lt;/p&gt;
+&lt;h2 id="what-renovate-can-update"&gt;What Renovate Can Update&lt;/h2&gt;
+&lt;p&gt;In a C# single-file script or Cake.Sdk build file, Renovate can now update:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;#:sdk&lt;/code&gt;&lt;/strong&gt; – e.g. &lt;code&gt;#:sdk Cake.Sdk&amp;#64;6.0.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;#:package&lt;/code&gt;&lt;/strong&gt; – e.g. &lt;code&gt;#:package Cake.Core&amp;#64;6.0.0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://cakebuild.net/docs/writing-builds/sdk/tools"&gt;InstallTool() / InstallTools()&lt;/a&gt;&lt;/strong&gt; – e.g. &lt;code&gt;InstallTool(&amp;quot;dotnet:https://api.nuget.org/v3/index.json?package=DPI&amp;amp;version=2025.12.17.349&amp;quot;);&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;#:sdk&lt;/code&gt; and &lt;code&gt;#:package&lt;/code&gt; directives are handled by the &lt;a href="https://docs.renovatebot.com/modules/manager/nuget/"&gt;NuGet manager&lt;/a&gt;. The &lt;a href="https://docs.renovatebot.com/modules/manager/cake/"&gt;Cake manager&lt;/a&gt; handles the Cake-specific tool installation methods. Both managers need to be told to look at &lt;code&gt;.cs&lt;/code&gt; files (or the specific paths you use) via configuration.&lt;/p&gt;
+&lt;h2 id="enabling-it-in-your-repository"&gt;Enabling It in Your Repository&lt;/h2&gt;
+&lt;p&gt;Renovate reads config from your repo (e.g. &lt;code&gt;renovate.json&lt;/code&gt; or &lt;code&gt;renovate.json5&lt;/code&gt;) and merges it with &lt;a href="https://docs.renovatebot.com/config-overview/"&gt;default and inherited config&lt;/a&gt;. To have Renovate consider your C# single-file scripts and Cake.Sdk build files, add the corresponding &lt;code&gt;managerFilePatterns&lt;/code&gt; (or the &lt;code&gt;fileMatch&lt;/code&gt;-style option your preset uses) so that the NuGet and Cake managers include those files.&lt;/p&gt;
+&lt;p&gt;Example addition to your Renovate config (e.g. in &lt;code&gt;renovate.json&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+  &amp;quot;$schema&amp;quot;: &amp;quot;https://docs.renovatebot.com/renovate-schema.json&amp;quot;,
+  &amp;quot;nuget&amp;quot;: {
+    &amp;quot;managerFilePatterns&amp;quot;: [&amp;quot;/\\.cs$/&amp;quot;]
+  },
+  &amp;quot;cake&amp;quot;: {
+    &amp;quot;managerFilePatterns&amp;quot;: [&amp;quot;/\\.cs$/&amp;quot;]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you only want to include specific script names (e.g. only &lt;code&gt;cake.cs&lt;/code&gt; and &lt;code&gt;build.cs&lt;/code&gt;), you can narrow the pattern:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+  &amp;quot;nuget&amp;quot;: {
+    &amp;quot;managerFilePatterns&amp;quot;: [&amp;quot;/(^|/)(cake|build)\\.cs$/&amp;quot;]
+  },
+  &amp;quot;cake&amp;quot;: {
+    &amp;quot;managerFilePatterns&amp;quot;: [&amp;quot;/(^|/)(cake|build)\\.cs$/&amp;quot;]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After this, Renovate will detect dependencies in those C# files and open PRs when updates are available. You can combine this with your existing presets (e.g. &lt;code&gt;config:recommended&lt;/code&gt;) and other options like &lt;code&gt;packageRules&lt;/code&gt; or scheduling as needed.&lt;/p&gt;
+&lt;h2 id="example-repositories-and-prs"&gt;Example Repositories and PRs&lt;/h2&gt;
+&lt;p&gt;Real-world examples of Renovate running against Cake.Sdk-style repos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://github.com/devlead/Devlead.Console"&gt;devlead/Devlead.Console&lt;/a&gt;&lt;/strong&gt; – &lt;a href="https://github.com/devlead/Devlead.Console/pull/239"&gt;PR #239&lt;/a&gt; shows Renovate updating dependencies in a C# build script.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://github.com/azurevoodoo/renovate-cake-sdk-test"&gt;azurevoodoo/renovate-cake-sdk-test&lt;/a&gt;&lt;/strong&gt; – A small test repo used to validate the feature; e.g. &lt;a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/4"&gt;PR #4&lt;/a&gt;, &lt;a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/8"&gt;PR #8&lt;/a&gt;, &lt;a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/9"&gt;PR #9&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Running Renovate locally against that test repo with a config that includes &lt;code&gt;(^|/)(cake|build)\\.cs$&lt;/code&gt; for the Cake manager produces PRs for outdated packages in those files without issues.&lt;/p&gt;
+&lt;h2 id="summary"&gt;Summary&lt;/h2&gt;
+&lt;p&gt;If you use C# single-file apps or Cake.Sdk build scripts with &lt;code&gt;#:sdk&lt;/code&gt;, &lt;code&gt;#:package&lt;/code&gt;, and &lt;code&gt;InstallTool(s)&lt;/code&gt;, you can now keep those dependencies up to date with Mend Renovate. Add the appropriate &lt;code&gt;managerFilePatterns&lt;/code&gt; for the NuGet and Cake managers so they scan your &lt;code&gt;.cs&lt;/code&gt; files (or the specific paths you use), and Renovate will open pull requests for available updates. For more on the managers and config, see the &lt;a href="https://docs.renovatebot.com/modules/manager/nuget/"&gt;NuGet manager docs&lt;/a&gt;, the &lt;a href="https://docs.renovatebot.com/modules/manager/cake/"&gt;Cake manager docs&lt;/a&gt;, and the &lt;a href="https://docs.renovatebot.com/config-overview/"&gt;Renovate configuration overview&lt;/a&gt;.&lt;/p&gt;
+</content>
+		<summary>Renovate can now update dependencies in C# single-file scripts and Cake.Sdk build scripts with #:sdk, #:package, and InstallTool.</summary>
+	</entry>
 	<entry>
 		<id>https://www.devlead.se/posts/2025/2025-07-28-migrating-to-cake-sdk</id>
 		<title>Migrating to Cake.Sdk</title>
@@ -1271,49 +1337,5 @@ dotnet tool install Blobify
 &lt;p&gt;Thank you for reading!&lt;/p&gt;
 </content>
 		<summary>A DevOps tool to document a Azure tenant resources</summary>
-	</entry>
-	<entry>
-		<id>https://www.devlead.se/posts/2023/2023-11-29-introducing-unpackdacpac</id>
-		<title>Introducing UnpackDacPac</title>
-		<author>
-			<name>devlead</name>
-		</author>
-		<link href="https://www.devlead.se/posts/2023/2023-11-29-introducing-unpackdacpac" />
-		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2023/11/29/d29f363677f845559d19401cd5a47318.jpg?sv=2021-10-04&amp;st=2023-11-29T17%253A14%253A21Z&amp;se=2035-11-30T17%253A14%253A00Z&amp;sr=b&amp;sp=r&amp;sig=ga7enWBL804T0haYj29QJE7hvaV14REXobavSOZ4wwU%253D" />
-		<updated>2023-11-29T00:00:00Z</updated>
-		<content>&lt;p&gt;If you work with SQL Server databases, you may have encountered DAC packages, or dacpacs, which are a way of packaging a database's schema and seed data for deployment or migration. Dacpacs are useful for deploying databases to different environments, such as development, testing, or production, but it's tooling comes with some limitations. For example, you cannot easily inspect the contents of a dacpac file without having a running instance of SQL Server.&lt;/p&gt;
-&lt;p&gt;That's why I created UnpackDacPac, a .NET tool that enables you to extract a dacpac file and generate a deployment script to a target folder without the need to deploy it to an actual database. A really useful for example when you need to debug a failed deployment or retrieve an old version of a SQL object from just a DevOps build artifact.
-UnpackDacPac is a cross-platform tool that runs on .NET SDK 6, 7, and 8 (&lt;em&gt;If you don't have the .NET SDK installed, you can get it from &lt;a href="https://get.dot.net/"&gt;here&lt;/a&gt;&lt;/em&gt;).&lt;/p&gt;
-&lt;h2 id="installation"&gt;Installation&lt;/h2&gt;
-&lt;p&gt;You can install UnpackDacPac as a global tool from the command line by typing:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet tool install --global UnpackDacPac
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
-&lt;p&gt;The usage of UnpackDacPac is simple:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;unpackdacpac unpack &amp;lt;dacPacPath&amp;gt; &amp;lt;outputPath&amp;gt; [OPTIONS]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;For example, if you have a dacpac file named Source.dacpac and you want to extract it to a folder named TargetPath, you can run:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;unpackdacpac unpack Source.dacpac TargetPath
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This will create the following files in the TargetPath folder:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;DacMetadata.xml&lt;/code&gt;: This file contains the metadata of the dacpac, such as the name, version, description, and dependencies of the database.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Deploy.sql&lt;/code&gt;: This file contains the generated deployment script that can be used to create or update a database from the dacpac.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;model.sql&lt;/code&gt;: This file contains the formatted SQL code that defines the schema and data of the database.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;model.xml&lt;/code&gt;: This file contains the XML representation of the database model.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Origin.xml&lt;/code&gt;: This file contains the origin information of the dacpac, such as the source server and database name.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;postdeploy.sql&lt;/code&gt;: This file contains any post-deployment scripts that are included in the dacpac.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;One of the features of UnpackDacPac is that you can exclude certain types of objects from the generated deployment script by using the &lt;code&gt;--deploy-script-exclude-object-type&lt;/code&gt; parameter. For example, if you want to exclude users, logins, and role memberships from the deployment script, you can run:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;unpackdacpac unpack Source.dacpac TargetPath --deploy-script-exclude-object-type Users --deploy-script-exclude-object-type Logins --deploy-script-exclude-object-type RoleMembership
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This will generate a deployment script that does not contain statements related to users, logins, or role memberships.&lt;/p&gt;
-&lt;h2 id="where-to-find-unpackdacpac"&gt;Where to find UnpackDacPac?&lt;/h2&gt;
-&lt;p&gt;UnpackDacPac is an open-source project under a permissive MIT license, the source can be found on &lt;a href="https://github.com/devlead/UnpackDacPac"&gt;GitHub&lt;/a&gt; and the NuGet package at &lt;a href="https://www.nuget.org/packages/UnpackDacPac"&gt;NuGet.org&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="feedback-and-suggestions"&gt;Feedback and suggestions&lt;/h2&gt;
-&lt;p&gt;I hope you find UnpackDacPac useful and feel free to provide any feedback, suggestions, or pull requests.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Happy unpacking!&lt;/em&gt;&lt;/p&gt;
-</content>
-		<summary>A .NET Tool for Extracting DAC Packages</summary>
 	</entry>
 </feed>

@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Renovate can now update dependencies in C# single-file scripts and Cake.Sdk build scripts with #:sdk, #:package, and InstallTool.">
+    <meta name="author" content="devlead">
+
+  <title>@devlead - Mattias Karlsson&#x27;s Blog - Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk</title>
+
+  <link rel="canonical" href="https://www.devlead.se/posts/2026/2026-02-26-renovate-csharp-file-based-apps">
+
+      <link type="application/rss+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.atom" />
+  
+  <meta name="application-name" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-tooltip" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="@devlead - Mattias Karlsson&#x27;s Blog - Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk" />
+    <meta property="og:image" content="https://cdn.devlead.se/clipimg-vscode/2026/02/26/a39f98b5-b854-48a8-a44b-2affb1b8d043.png?sp=r&amp;st=2026-02-26T22:10:14Z&amp;se=2036-02-27T06:25:14Z&amp;spr=https&amp;sv=2024-11-04&amp;sr=b&amp;sig=FIy9HlptIfMEwPF9kW3iJoNqz6iN%2BMMqX%2BezOGZ9DNM%3D" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devlead.se/posts/2026/2026-02-26-renovate-csharp-file-based-apps" />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/scss/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css' data-no-mirror>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' data-no-mirror>
+  
+  <!-- Custom styles for this template -->
+  <link href="/scss/clean-blog.css" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/themes/prism.css">
+
+  <!-- Lunr search -->
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+.sponsorship { text-align: center; margin-top: 1em; }
+.sponsorship a { text-decoration: none; }
+.sponsorship a i.fa-heart { color: red; }
+.sponsorship a:hover i { color: white; transition-property: color; transition-duration: 350ms; }
+</style>
+<link href="/scss/TabGroup.css" rel="stylesheet" type="text/css">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">@devlead - Mattias Karlsson&#x27;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/posts">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url(&quot;https://cdn.devlead.se/clipimg-vscode/2026/02/26/a39f98b5-b854-48a8-a44b-2affb1b8d043.png?sp=r&amp;st=2026-02-26T22:10:14Z&amp;se=2036-02-27T06:25:14Z&amp;spr=https&amp;sv=2024-11-04&amp;sr=b&amp;sig=FIy9HlptIfMEwPF9kW3iJoNqz6iN%2BMMqX%2BezOGZ9DNM%3D&quot;)">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-heading">
+          <h1>
+            Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk
+          </h1>
+            <h2 class="subheading">Renovate can now update dependencies in C# single-file scripts and Cake.Sdk build scripts with #:sdk, #:package, and InstallTool.</h2>
+              <div class="meta">Published on Thursday, 26 February 2026</div>
+                <div class="mt-3">
+                      <a href="/tags/net" class="badge badge-light"> .NET</a>
+                      <a href="/tags/csharp" class="badge badge-light"> CSharp</a>
+                      <a href="/tags/devops" class="badge badge-light"> DevOps</a>
+                      <a href="/tags/renovate" class="badge badge-light"> Renovate</a>
+                      <a href="/tags/cake" class="badge badge-light"> Cake</a>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <div class="container"y> 
+    <div class="row">
+      <div id="content" class="col-md-12" data-pagefind-body >  
+        <p><a href="https://github.com/renovatebot/renovate">Mend Renovate</a> automates dependency updates by opening pull requests when newer versions of your dependencies are available. Until recently, if you used .NET single-file scripts or <a href="https://cakebuild.net/docs/running-builds/runners/cake-sdk">Cake.Sdk</a> build scripts written in C# (e.g. <code>cake.cs</code> or <code>build.cs</code>), Renovate did not look inside those files. Two merged changes fix that: the NuGet manager now understands <code>#:sdk</code> and <code>#:package</code> directives in C# files, and the Cake manager can extract and update packages from <a href="https://cakebuild.net/docs/writing-builds/sdk/tools"><code>InstallTool</code></a> and <code>InstallTools</code> calls. In this post I'll summarize what was added and how to enable it in your repo.</p>
+<h2 id="what-changed">What Changed</h2>
+<p>.NET 10 introduced <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/">file-based execution</a> for single-file C# apps. In that model, dependencies are declared with <code>#:sdk</code> and <code>#:package</code> at the top of the file instead of in a <code>.csproj</code>. Cake.Sdk uses the same mechanism for build scripts, and tools are installed via <code>InstallTool()</code> or <code>InstallTools()</code> rather than the old <code>#tool</code> directive. Renovate's default file patterns only include project and config files (e.g. <code>.csproj</code>, <code>global.json</code>, <code>dotnet-tools.json</code>), so it did not previously scan plain <code>.cs</code> files. That meant dependencies in <code>cake.cs</code> or other single-file C# scripts were never considered for updates.</p>
+<p>Two pull requests extend Renovate to support these formats:</p>
+<ol>
+<li><p><strong><a href="https://github.com/renovatebot/renovate/pull/40040">feat(manager/nuget): Support single file package directives</a></strong> (merged in <a href="https://github.com/renovatebot/renovate/releases/tag/43.26.0">v43.26.0</a>)<br />
+The NuGet manager can now extract and update dependencies from C# files that use <code>#:sdk</code> and <code>#:package</code>. Because the target files are regular source files, they are not part of the default <code>managerFilePatterns</code>. You must add the patterns you want (e.g. <code>/\\.cs$/</code> or something narrower) in your Renovate config.</p>
+</li>
+<li><p><strong><a href="https://github.com/renovatebot/renovate/pull/40070">feat(manager/cake): Support extracting nuget packages from InstallTools helper methods</a></strong> (merged in <a href="https://github.com/renovatebot/renovate/releases/tag/43.41.0">v43.41.0</a>)<br />
+The Cake manager gains support for single-file Cake.Sdk build scripts. It can extract NuGet package references from <code>InstallTool()</code> and <code>InstallTools()</code> method parameters (e.g. <code>InstallTool(&quot;dotnet:https://api.nuget.org/v3/index.json?package=DPI&amp;version=2025.12.17.349&quot;);</code>). By default the Cake manager still only matches <code>*.cake</code> files, so to have Renovate process C# Cake scripts you need to extend the Cake manager's file patterns in config.</p>
+</li>
+</ol>
+<p>So in practice: use the <strong>NuGet</strong> manager for <code>#:sdk</code> and <code>#:package</code> in any C# file, and use the <strong>Cake</strong> manager for Cake-specific constructs (including <code>InstallTool(s)</code>) in C# files. For a typical <code>cake.cs</code> you will often enable both and let each manager handle the directives it understands.</p>
+<h2 id="what-renovate-can-update">What Renovate Can Update</h2>
+<p>In a C# single-file script or Cake.Sdk build file, Renovate can now update:</p>
+<ul>
+<li><strong><code>#:sdk</code></strong> – e.g. <code>#:sdk Cake.Sdk&#64;6.0.0</code></li>
+<li><strong><code>#:package</code></strong> – e.g. <code>#:package Cake.Core&#64;6.0.0</code></li>
+<li><strong><a href="https://cakebuild.net/docs/writing-builds/sdk/tools">InstallTool() / InstallTools()</a></strong> – e.g. <code>InstallTool(&quot;dotnet:https://api.nuget.org/v3/index.json?package=DPI&amp;version=2025.12.17.349&quot;);</code></li>
+</ul>
+<p>The <code>#:sdk</code> and <code>#:package</code> directives are handled by the <a href="https://docs.renovatebot.com/modules/manager/nuget/">NuGet manager</a>. The <a href="https://docs.renovatebot.com/modules/manager/cake/">Cake manager</a> handles the Cake-specific tool installation methods. Both managers need to be told to look at <code>.cs</code> files (or the specific paths you use) via configuration.</p>
+<h2 id="enabling-it-in-your-repository">Enabling It in Your Repository</h2>
+<p>Renovate reads config from your repo (e.g. <code>renovate.json</code> or <code>renovate.json5</code>) and merges it with <a href="https://docs.renovatebot.com/config-overview/">default and inherited config</a>. To have Renovate consider your C# single-file scripts and Cake.Sdk build files, add the corresponding <code>managerFilePatterns</code> (or the <code>fileMatch</code>-style option your preset uses) so that the NuGet and Cake managers include those files.</p>
+<p>Example addition to your Renovate config (e.g. in <code>renovate.json</code>):</p>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://docs.renovatebot.com/renovate-schema.json&quot;,
+  &quot;nuget&quot;: {
+    &quot;managerFilePatterns&quot;: [&quot;/\\.cs$/&quot;]
+  },
+  &quot;cake&quot;: {
+    &quot;managerFilePatterns&quot;: [&quot;/\\.cs$/&quot;]
+  }
+}
+</code></pre>
+<p>If you only want to include specific script names (e.g. only <code>cake.cs</code> and <code>build.cs</code>), you can narrow the pattern:</p>
+<pre><code class="language-json">{
+  &quot;nuget&quot;: {
+    &quot;managerFilePatterns&quot;: [&quot;/(^|/)(cake|build)\\.cs$/&quot;]
+  },
+  &quot;cake&quot;: {
+    &quot;managerFilePatterns&quot;: [&quot;/(^|/)(cake|build)\\.cs$/&quot;]
+  }
+}
+</code></pre>
+<p>After this, Renovate will detect dependencies in those C# files and open PRs when updates are available. You can combine this with your existing presets (e.g. <code>config:recommended</code>) and other options like <code>packageRules</code> or scheduling as needed.</p>
+<h2 id="example-repositories-and-prs">Example Repositories and PRs</h2>
+<p>Real-world examples of Renovate running against Cake.Sdk-style repos:</p>
+<ul>
+<li><strong><a href="https://github.com/devlead/Devlead.Console">devlead/Devlead.Console</a></strong> – <a href="https://github.com/devlead/Devlead.Console/pull/239">PR #239</a> shows Renovate updating dependencies in a C# build script.</li>
+<li><strong><a href="https://github.com/azurevoodoo/renovate-cake-sdk-test">azurevoodoo/renovate-cake-sdk-test</a></strong> – A small test repo used to validate the feature; e.g. <a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/4">PR #4</a>, <a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/8">PR #8</a>, <a href="https://github.com/azurevoodoo/renovate-cake-sdk-test/pull/9">PR #9</a>.</li>
+</ul>
+<p>Running Renovate locally against that test repo with a config that includes <code>(^|/)(cake|build)\\.cs$</code> for the Cake manager produces PRs for outdated packages in those files without issues.</p>
+<h2 id="summary">Summary</h2>
+<p>If you use C# single-file apps or Cake.Sdk build scripts with <code>#:sdk</code>, <code>#:package</code>, and <code>InstallTool(s)</code>, you can now keep those dependencies up to date with Mend Renovate. Add the appropriate <code>managerFilePatterns</code> for the NuGet and Cake managers so they scan your <code>.cs</code> files (or the specific paths you use), and Renovate will open pull requests for available updates. For more on the managers and config, see the <a href="https://docs.renovatebot.com/modules/manager/nuget/">NuGet manager docs</a>, the <a href="https://docs.renovatebot.com/modules/manager/cake/">Cake manager docs</a>, and the <a href="https://docs.renovatebot.com/config-overview/">Renovate configuration overview</a>.</p>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small">This post is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a></p>
+                    <p><div class="sponsorship">
+    <a class="btn btn-lg btn-outline-primary btn-block" href="https://github.com/sponsors/devlead" title="Sponsor Mattias Karlsson on GitHub">
+        <i class="fa fa-heart"></i>
+        Sponsor Mattias
+    </a>
+</div></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small"><a href="https://github.com/devlead/devlead.se/edit/main/src/DevLead/input/posts/2026/2026-02-26-renovate-csharp-file-based-apps.md"><i class="fas fa-edit"></i> Edit This Page <i class="fab fa-github"></i> </a></p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->  
+  <footer>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted m-0">&#xA9; Mattias Karlsson 2026</p>
+                    <br />
+                    <div id="search"></div>
+                    <br />
+                    <ul class="list-inline text-center small">
+                            <li class="list-inline-item">
+                                <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                            </li>
+                    </ul>
+                    <br />
+                    <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+                </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js" integrity="sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I" crossorigin="anonymous"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ 
+            element: "#search",
+            showSubResults: true,
+             processResult: function (result) { 
+                result.meta.image = result.meta.image.replaceAll("&amp;", "&");
+                return result;
+            }
+        });
+        
+    });
+</script>
+
+  
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/clean-blog.js"></script>
+
+</body>
+
+</html>

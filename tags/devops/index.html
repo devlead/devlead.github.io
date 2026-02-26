@@ -115,6 +115,12 @@
 
 
 <div class="post-preview">
+    <h2 class="post-title"><a href="/posts/2026/2026-02-26-renovate-csharp-file-based-apps">Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk</a></h2>
+    <p class="post-meta">Published on Thursday, 26 February 2026</p>
+<p><a href="https://github.com/renovatebot/renovate">Mend Renovate</a> automates dependency updates by opening pull requests when newer versions of your dependencies are available. Until recently, if you used .NET single-file scripts or <a href="https://cakebuild.net/docs/running-builds/runners/cake-sdk">Cake.Sdk</a> build scripts written in C# (e.g. <code>cake.cs</code> or <code>build.cs</code>), Renovate did not look inside those files. Two merged changes fix that: the NuGet manager now understands <code>#:sdk</code> and <code>#:package</code> directives in C# files, and the Cake manager can extract and update packages from <a href="https://cakebuild.net/docs/writing-builds/sdk/tools"><code>InstallTool</code></a> and <code>InstallTools</code> calls. In this post I'll summarize what was added and how to enable it in your repo.</p>        <p class="small"><a href="/posts/2026/2026-02-26-renovate-csharp-file-based-apps">Read more...</a></p>
+</div>
+
+<div class="post-preview">
     <h2 class="post-title"><a href="/posts/2025/2025-07-28-migrating-to-cake-sdk">Migrating to Cake.Sdk</a></h2>
     <p class="post-meta">Published on Monday, 28 July 2025</p>
 <p>The Cake team recently announced <a href="https://cakebuild.net/blog/2025/07/dotnet-cake-cs">Cake.Sdk</a>, a new way to get the Cake tool scripting experience in regular .NET console applications. This brings the stellar experience of the new &quot;dotnet run app.cs&quot; feature (requires .NET 10), while also working seamlessly with .NET 8 and 9 for regular csproj projects.</p>        <p class="small"><a href="/posts/2025/2025-07-28-migrating-to-cake-sdk">Read more...</a></p>
@@ -168,12 +174,6 @@ A big part of this initial and ongoing is to analyze and audit dependencies, whi
     <p class="post-meta">Published on Friday, 23 March 2018</p>
 <p>Originally published at <a href="https://blog.bitrise.io/deploying-net-core-to-azure-using-bitrise-and-cake/">blog.bitrise.com</a>.</p>        <p class="small"><a href="/posts/2018/2018-03-26-deploying-net-core-to-azure-using-bitrise-and-cake">Read more...</a></p>
 </div>
-
-<div class="post-preview">
-    <h2 class="post-title"><a href="/posts/2018/2018-02-20-run-from-zip-with-cake-kudu-client">&#x201C;Run-From-Zip&#x201D; with Cake Kudu Client</a></h2>
-    <p class="post-meta">Published on Tuesday, 20 February 2018</p>
-<p><img src="https://cdn.devlead.se/clipimg-vscode/2021/01/11/29bf78b1-94f2-6301-ec83-fd4541c438b7.png?sv=2019-12-12&amp;amp;st=2021-01-10T12%3A37%3A03Z&amp;amp;se=2031-01-11T12%3A37%3A03Z&amp;amp;sr=b&amp;amp;sp=r&amp;amp;sig=eyImi7f1xhlW0EtOsWQOS5NhsBgUv6fWlKtF03AqOXc%3D" alt="Ship at sea"></p>        <p class="small"><a href="/posts/2018/2018-02-20-run-from-zip-with-cake-kudu-client">Read more...</a></p>
-</div>
     <div>
         <div class="float-sm-left">
         </div>
@@ -185,11 +185,11 @@ A big part of this initial and ongoing is to analyze and audit dependencies, whi
 
             </div>
             <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
-                    <a href="/tags/net" class="badge badge-light"> .NET (27)</a>
+                    <a href="/tags/net" class="badge badge-light"> .NET (28)</a>
                     <a href="/tags/c" class="badge badge-light"> C# (16)</a>
-                    <a href="/tags/devops" class="badge badge-dark"> DevOps (14)</a>
+                    <a href="/tags/devops" class="badge badge-dark"> DevOps (15)</a>
                     <a href="/tags/azure" class="badge badge-light"> Azure (13)</a>
-                    <a href="/tags/cake" class="badge badge-light"> Cake (7)</a>
+                    <a href="/tags/cake" class="badge badge-light"> Cake (8)</a>
                     <a href="/tags/tool" class="badge badge-light"> Tool (5)</a>
                     <a href="/tags/statiq" class="badge badge-light"> Statiq (5)</a>
                     <a href="/tags/devopsdocs" class="badge badge-light"> DevOpsDocs (4)</a>
@@ -197,9 +197,10 @@ A big part of this initial and ongoing is to analyze and audit dependencies, whi
                     <a href="/tags/nuget" class="badge badge-light"> NuGet (4)</a>
                     <a href="/tags/devlead.statiq" class="badge badge-light"> Devlead.Statiq (3)</a>
                     <a href="/tags/release-notes" class="badge badge-light"> Release Notes (3)</a>
+                    <a href="/tags/csharp" class="badge badge-light"> CSharp (2)</a>
                     <a href="/tags/iaas" class="badge badge-light"> IAAS (2)</a>
                     <a href="/tags/opinion" class="badge badge-light"> Opinion (2)</a>
-                    <a href="/tags/csharp" class="badge badge-light"> CSharp (1)</a>
+                    <a href="/tags/renovate" class="badge badge-light"> Renovate (1)</a>
                     <a href="/tags/wasm" class="badge badge-light"> WASM (1)</a>
                     <a href="/tags/pagefind" class="badge badge-light"> Pagefind (1)</a>
                     <a href="/tags/visual-studio" class="badge badge-light"> Visual Studio (1)</a>

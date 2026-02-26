@@ -115,6 +115,12 @@
 
 
 <div class="post-preview">
+    <h2 class="post-title"><a href="/posts/2026/2026-02-26-renovate-csharp-file-based-apps">Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk</a></h2>
+    <p class="post-meta">Published on Thursday, 26 February 2026</p>
+<p><a href="https://github.com/renovatebot/renovate">Mend Renovate</a> automates dependency updates by opening pull requests when newer versions of your dependencies are available. Until recently, if you used .NET single-file scripts or <a href="https://cakebuild.net/docs/running-builds/runners/cake-sdk">Cake.Sdk</a> build scripts written in C# (e.g. <code>cake.cs</code> or <code>build.cs</code>), Renovate did not look inside those files. Two merged changes fix that: the NuGet manager now understands <code>#:sdk</code> and <code>#:package</code> directives in C# files, and the Cake manager can extract and update packages from <a href="https://cakebuild.net/docs/writing-builds/sdk/tools"><code>InstallTool</code></a> and <code>InstallTools</code> calls. In this post I'll summarize what was added and how to enable it in your repo.</p>        <p class="small"><a href="/posts/2026/2026-02-26-renovate-csharp-file-based-apps">Read more...</a></p>
+</div>
+
+<div class="post-preview">
     <h2 class="post-title"><a href="/posts/2021/2021-03-03-introducing-cake-clickonce-recipe">Introducing Cake ClickOnce Recipe</a></h2>
     <p class="post-meta">Published on Wednesday, 3 March 2021</p>
 <p>A little over a decade ago I did a lot of business applications with .NET Framework WPF and ClickOnce was in many cases used as a convenient way to deploy and update Windows applications. ClickOnce hasn't gotten much love over the years, and when .NET Core 3 introduced support for WPF applications ClickOnce support was nowhere to be found. But guess what, that's changed with .NET 5 and in this post, I'll go through my recipe for simplifying the building and publishing .NET 5 Windows application using GitHub Actions, Cake, and ClickOnce to Azure Blob Storage.</p>        <p class="small"><a href="/posts/2021/2021-03-03-introducing-cake-clickonce-recipe">Read more...</a></p>
@@ -158,11 +164,11 @@
 
             </div>
             <div class="col-md-4 mt-4 mt-md-0 col-sm-height">
-                    <a href="/tags/net" class="badge badge-light"> .NET (27)</a>
+                    <a href="/tags/net" class="badge badge-light"> .NET (28)</a>
                     <a href="/tags/c" class="badge badge-light"> C# (16)</a>
-                    <a href="/tags/devops" class="badge badge-light"> DevOps (14)</a>
+                    <a href="/tags/devops" class="badge badge-light"> DevOps (15)</a>
                     <a href="/tags/azure" class="badge badge-light"> Azure (13)</a>
-                    <a href="/tags/cake" class="badge badge-dark"> Cake (7)</a>
+                    <a href="/tags/cake" class="badge badge-dark"> Cake (8)</a>
                     <a href="/tags/tool" class="badge badge-light"> Tool (5)</a>
                     <a href="/tags/statiq" class="badge badge-light"> Statiq (5)</a>
                     <a href="/tags/devopsdocs" class="badge badge-light"> DevOpsDocs (4)</a>
@@ -170,9 +176,10 @@
                     <a href="/tags/nuget" class="badge badge-light"> NuGet (4)</a>
                     <a href="/tags/devlead.statiq" class="badge badge-light"> Devlead.Statiq (3)</a>
                     <a href="/tags/release-notes" class="badge badge-light"> Release Notes (3)</a>
+                    <a href="/tags/csharp" class="badge badge-light"> CSharp (2)</a>
                     <a href="/tags/iaas" class="badge badge-light"> IAAS (2)</a>
                     <a href="/tags/opinion" class="badge badge-light"> Opinion (2)</a>
-                    <a href="/tags/csharp" class="badge badge-light"> CSharp (1)</a>
+                    <a href="/tags/renovate" class="badge badge-light"> Renovate (1)</a>
                     <a href="/tags/wasm" class="badge badge-light"> WASM (1)</a>
                     <a href="/tags/pagefind" class="badge badge-light"> Pagefind (1)</a>
                     <a href="/tags/visual-studio" class="badge badge-light"> Visual Studio (1)</a>
