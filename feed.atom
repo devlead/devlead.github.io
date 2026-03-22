@@ -4,8 +4,30 @@
 	<title>@devlead - Mattias Karlsson's Blog</title>
 	<link rel="self" href="https://www.devlead.se/" />
 	<rights>© Mattias Karlsson 2026</rights>
-	<updated>2026-03-10T20:53:38Z</updated>
+	<updated>2026-03-22T09:53:48Z</updated>
 	<logo>https://cdn.devlead.se/clipimg-vscode/2021/01/11/1f2af322-a19f-753d-bd3e-00118dc674f1.png?sv=2019-12-12&amp;st=2021-01-10T15%253A16%253A48Z&amp;se=2031-01-11T15%253A16%253A48Z&amp;sr=b&amp;sp=r&amp;sig=RYHdZjTvO%252Fw0tUGsgnIiGJRhTiQQPHnEsSKtnV14Yoc%253D</logo>
+	<entry>
+		<id>https://www.devlead.se/posts/2026/2026-03-22-quarter-billion-nuget-downloads</id>
+		<title>A quarter of a billion NuGet downloads</title>
+		<author>
+			<name>devlead</name>
+		</author>
+		<link href="https://www.devlead.se/posts/2026/2026-03-22-quarter-billion-nuget-downloads" />
+		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2026/03/22/019d14ed-ff79-7c53-b9ed-40e27779409a.png?sv=2025-07-05&amp;spr=https&amp;st=2026-03-22T05%253A31%253A00Z&amp;se=2036-03-23T09%253A31%253A00Z&amp;sr=b&amp;sp=r&amp;sig=cL%252FseHDMzerFGyf5a0w0H2JNWWfTytZ5tOqcVCBrueY%253D" />
+		<updated>2026-03-22T00:00:00Z</updated>
+		<content>&lt;p&gt;The total downloads of my packages on &lt;a href="https://www.nuget.org/profiles/devlead"&gt;NuGet.org&lt;/a&gt; have crossed a quarter of a billion. It is a vanity number, but it got me thinking less about the count and more about the platform that made it possible. So here is a short look back at NuGet, the positive bits, and what it has enabled for open source and the community.&lt;/p&gt;
+&lt;h2 id="nuget-in-context"&gt;NuGet in context&lt;/h2&gt;
+&lt;p&gt;An essential tool for any modern development platform is a way for developers to create, share, and consume useful libraries. For .NET, that mechanism is &lt;a href="https://www.nuget.org/policies/About"&gt;NuGet&lt;/a&gt;. It started out as NuPack, was &lt;a href="https://haacked.com/archive/2010/10/29/nupack-is-now-nuget.aspx/"&gt;renamed to NuGet&lt;/a&gt; in 2010, and became one of Microsoft's early forays into open source package management under the OuterCurve Foundation. Later, and still today, NuGet is part of the &lt;a href="https://dotnetfoundation.org/"&gt;.NET Foundation&lt;/a&gt;. The &lt;a href="https://blog.davidebbo.com/2011/01/introducing-nuget-gallery.html"&gt;NuGet Gallery&lt;/a&gt; followed in 2011, and the rest is history.&lt;/p&gt;
+&lt;p&gt;In May 2016, &lt;a href="https://devblogs.microsoft.com/dotnet/the-1st-billion-1/"&gt;NuGet.org reached its first billion downloads&lt;/a&gt;. Today the gallery has passed 895 billion package downloads, over 11 million package versions, and over half a million unique packages. The ecosystem has grown enormously around that: .NET Framework, .NET Core and the unified .NET platform, better tooling, and a gallery that keeps improving. What has stayed constant is that the &lt;a href="https://www.nuget.org/policies/About"&gt;NuGet Gallery is open source&lt;/a&gt;, licensed under the Apache 2 License on GitHub. The NuGet team and a long list of community contributors have built and maintained the site that powers NuGet.org. That openness is something worth celebrating.&lt;/p&gt;
+&lt;h2 id="what-nuget-has-enabled"&gt;What NuGet has enabled&lt;/h2&gt;
+&lt;p&gt;For open source, NuGet has become the place where .NET libraries and tools get discovered and reused. Maintainers can publish once and reach millions of developers. Projects like &lt;a href="https://cakebuild.net/"&gt;Cake&lt;/a&gt; and countless libraries, tools, and templates are easily available because there is a single, trusted place to host and consume packages. That has made it far easier for teams and individuals to adopt .NET open source.&lt;/p&gt;
+&lt;p&gt;For the community, NuGet has evolved beyond the basics. Package signing, two-factor authentication, &lt;a href="https://devblogs.microsoft.com/dotnet/nugetaudit-2-0-elevating-security-and-trust-in-package-management/"&gt;NuGetAudit&lt;/a&gt;, and &lt;a href="https://devblogs.microsoft.com/dotnet/enhanced-security-is-here-with-the-new-trust-publishing-on-nuget-org/"&gt;Trusted Publishing&lt;/a&gt; have raised security and trust. &lt;a href="https://devblogs.microsoft.com/dotnet/announcing-sponsorship-on-nugetdotorg-for-maintainer-appreciation/"&gt;Sponsorship on NuGet.org&lt;/a&gt; gives users a way to support maintainers. The gallery itself has improved with better search, &lt;a href="https://devblogs.microsoft.com/dotnet/introducing-central-package-management/"&gt;Central Package Management&lt;/a&gt; support, dark mode, and clearer package details. None of that happens without a platform that the team and community keep investing in. Development does not always move as fast as users would like, but that is the trade-off when you are also operating and maintaining a service that so many developers depend on every day.&lt;/p&gt;
+&lt;p&gt;For me, NuGet has been the channel for publishing and maintaining Cake-related packages and .NET tools such as &lt;a href="https://www.nuget.org/packages/Cake.Tool"&gt;Cake.Tool&lt;/a&gt;, &lt;a href="https://www.nuget.org/packages/Cake.Git"&gt;Cake.Git&lt;/a&gt; and latest being &lt;a href="https://www.nuget.org/packages/Cake.Sdk"&gt;Cake.Sdk&lt;/a&gt;, along with several other tools and libraries like &lt;a href="https://www.nuget.org/packages/LitJson"&gt;LitJSON&lt;/a&gt;, &lt;a href="https://www.nuget.org/packages/DPI"&gt;DPI&lt;/a&gt;, &lt;a href="https://www.nuget.org/packages/ARI"&gt;ARI&lt;/a&gt;, &lt;a href="https://www.nuget.org/packages/BRI"&gt;BRI&lt;/a&gt;, &lt;a href="https://www.nuget.org/packages/Blobify"&gt;Blobify&lt;/a&gt;, and &lt;a href="https://www.nuget.org/packages/UnpackDacPac"&gt;UnpackDacPac&lt;/a&gt;, etc. It has also given me the chance to give back. The gallery is open for contributions, and I was able to add &lt;a href="https://github.com/NuGet/NuGetGallery/pull/10277"&gt;Central Package Management and multiple package manager commands to the NuGet.org command palette&lt;/a&gt;. That kind of improvement is possible because the gallery is open source and the team welcomes community pull requests.&lt;/p&gt;
+&lt;h2 id="thanks"&gt;Thanks&lt;/h2&gt;
+&lt;p&gt;Having reached a quarter of a billion downloads is not something one does alone. Thank you to everyone who uses these packages, to my projects co-maintainers, and to the NuGet team and everyone who contributes to the gallery and the ecosystem. NuGet has come a long way since 2010, and I am looking forward to seeing how it continues to improve and support maintainers and the .NET community.&lt;/p&gt;
+</content>
+		<summary>A personal milestone and a short reflection on NuGet's history and what it has enabled for open source and the community</summary>
+	</entry>
 	<entry>
 		<id>https://www.devlead.se/posts/2026/2026-02-26-renovate-csharp-file-based-apps</id>
 		<title>Mend Renovate Now Supports C# File-Based Apps and Cake.Sdk</title>
@@ -1292,50 +1314,5 @@ dotnet tool install Blobify
 &lt;/ul&gt;
 </content>
 		<summary>A .NET Global tool that archives (moves) files from a local folder to an Azure Blob Storage container.</summary>
-	</entry>
-	<entry>
-		<id>https://www.devlead.se/posts/2024/2024-02-08-introducing-ari</id>
-		<title>Introducing ARI</title>
-		<author>
-			<name>devlead</name>
-		</author>
-		<link href="https://www.devlead.se/posts/2024/2024-02-08-introducing-ari" />
-		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2024/02/08/23be558ef4784e74a88b6bab00141708.jpg?sv=2021-10-04&amp;st=2024-02-08T19%253A03%253A22Z&amp;se=2050-12-16T19%253A05%253A00Z&amp;sr=b&amp;sp=r&amp;sig=MYOLIoM7zuZkWN7OQmLDVMTP796IKEhotMKRCtPYIsY%253D" />
-		<updated>2024-02-08T00:00:00Z</updated>
-		<content>&lt;p&gt;If you are working with Azure, you might have encountered the challenge of keeping track of all the subscriptions, resource groups, and resources that you have in your tenant. You might also want to document them in a clear and consistent way, for example, for compliance, auditing, or reporting purposes.&lt;/p&gt;
-&lt;p&gt;That's why I created ARI, a .NET tool that inventories and documents your Azure tenant's subscriptions, resource groups, and resources. ARI stands for Azure Resource Inventory, and it is a free and open source tool that you can install and use with the .NET 7 or 8 SDK.&lt;/p&gt;
-&lt;h2 id="how-to-install-ari"&gt;How to install ARI&lt;/h2&gt;
-&lt;p&gt;ARI is available as a NuGet package at &lt;a href="https://www.nuget.org/packages/ARI"&gt;nuget.org/packages/ARI&lt;/a&gt;. You can install it either globally on your machine or locally in a specific folder or repository.&lt;/p&gt;
-&lt;p&gt;To install it globally, run the following command:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet tool install --global ARI
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;To install it locally, you need to create a tool manifest file first. You can do this by running the following command in the folder where you want to use ARI:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet new tool-manifest
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then, you can install ARI in that folder by running:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet tool install --local ARI
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="how-to-use-ari"&gt;How to use ARI&lt;/h2&gt;
-&lt;p&gt;Once you have installed ARI, you can use it by typing &lt;code&gt;ari&lt;/code&gt; if you installed it globally, or &lt;code&gt;dotnet ari&lt;/code&gt; if you installed it locally.&lt;/p&gt;
-&lt;p&gt;You can use the &lt;code&gt;-h&lt;/code&gt; or &lt;code&gt;--help&lt;/code&gt; parameters to get the current list of available commands and options. For example:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;ari --help
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;ari &amp;lt;command&amp;gt; --help
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The main current available command of ARI is &lt;code&gt;inventory&lt;/code&gt;, which takes a tenant ID and an output path as required parameters. It also has some optional parameters that you can use to customize the inventory process. For example:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;ari inventory &amp;lt;tenantId&amp;gt; &amp;lt;outputpath&amp;gt; [options]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;inventory&lt;/code&gt; command will scan your Azure tenant and generate a set of GitHub flavoured markdown files that document your subscriptions, resource groups, and resources. It will also create indexes by tag name and value, or by resources missing tags.&lt;/p&gt;
-&lt;h2 id="how-to-contribute-to-ari"&gt;How to contribute to ARI&lt;/h2&gt;
-&lt;p&gt;ARI is licensed under the MIT license, which means you can use it for any purpose, modify it, and distribute it freely. The source code is hosted on GitHub at &lt;a href="https://github.com/devlead/ari"&gt;github.com/devlead/ari&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I welcome any feedback, suggestions, bug reports, or pull requests from the community. If you want to contribute to ARI, please check out the issues on GitHub.&lt;/p&gt;
-&lt;h2 id="how-to-use-the-output-of-ari"&gt;How to use the output of ARI&lt;/h2&gt;
-&lt;p&gt;The output of ARI is a set of GitHub flavored markdown files that you can use for various purposes. For example, you can use them with static site generators, wikis, or other tools that support markdown.&lt;/p&gt;
-&lt;p&gt;One example of a static site generator that works well with ARI is Statiq ( &lt;a href="https://statiq.dev/"&gt;statiq.dev&lt;/a&gt; ), which is also a .NET framework for generating static websites and markdown files is one of its supported input formats. You can see an example of a static website generated using Statiq and ARI at &lt;a href="https://www.devlead.se/ARI/"&gt;devlead.se/ARI&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I hope you find ARI useful and helpful for your Azure projects. Please let me know what you think and how I can improve it.&lt;/p&gt;
-&lt;p&gt;Thank you for reading!&lt;/p&gt;
-</content>
-		<summary>A DevOps tool to document a Azure tenant resources</summary>
 	</entry>
 </feed>
