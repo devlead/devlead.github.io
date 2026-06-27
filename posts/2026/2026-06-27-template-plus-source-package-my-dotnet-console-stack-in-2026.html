@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How Devlead.Console and a slim template fix template drift while keeping the same opinionated console bootstrap">
+    <meta name="author" content="devlead">
+
+  <title>@devlead - Mattias Karlsson&#x27;s Blog - Template plus source package: my .NET console stack in 2026</title>
+
+  <link rel="canonical" href="https://www.devlead.se/posts/2026/2026-06-27-template-plus-source-package-my-dotnet-console-stack-in-2026">
+
+      <link type="application/rss+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.atom" />
+  
+  <meta name="application-name" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-tooltip" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="@devlead - Mattias Karlsson&#x27;s Blog - Template plus source package: my .NET console stack in 2026" />
+    <meta property="og:image" content="https://cdn.devlead.se/clipimg-vscode/2026/06/27/7ffc8a51-5450-4250-8ab6-18f19c5a3984.png?sv=2023-01-03&amp;st=2026-06-27T20%3A01%3A18Z&amp;se=2036-06-28T20%3A01%3A00Z&amp;sr=b&amp;sp=r&amp;sig=%2F70LfFDhc%2BqiQaMwceWIoqODYiQBnLfQevfdXT6G4BM%3D" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devlead.se/posts/2026/2026-06-27-template-plus-source-package-my-dotnet-console-stack-in-2026" />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/scss/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css' data-no-mirror>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' data-no-mirror>
+  
+  <!-- Custom styles for this template -->
+  <link href="/scss/clean-blog.css" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/themes/prism.css">
+
+  <!-- Lunr search -->
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+.sponsorship { text-align: center; margin-top: 1em; }
+.sponsorship a { text-decoration: none; }
+.sponsorship a i.fa-heart { color: red; }
+.sponsorship a:hover i { color: white; transition-property: color; transition-duration: 350ms; }
+</style>
+<link href="/scss/TabGroup.css" rel="stylesheet" type="text/css">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">@devlead - Mattias Karlsson&#x27;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/posts">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url(&quot;https://cdn.devlead.se/clipimg-vscode/2026/06/27/7ffc8a51-5450-4250-8ab6-18f19c5a3984.png?sv=2023-01-03&amp;st=2026-06-27T20%3A01%3A18Z&amp;se=2036-06-28T20%3A01%3A00Z&amp;sr=b&amp;sp=r&amp;sig=%2F70LfFDhc%2BqiQaMwceWIoqODYiQBnLfQevfdXT6G4BM%3D&quot;)">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-heading">
+          <h1>
+            Template plus source package: my .NET console stack in 2026
+          </h1>
+            <h2 class="subheading">How Devlead.Console and a slim template fix template drift while keeping the same opinionated console bootstrap</h2>
+              <div class="meta">Published on Saturday, 27 June 2026</div>
+                <div class="mt-3">
+                      <a href="/tags/net" class="badge badge-light"> .NET</a>
+                      <a href="/tags/c" class="badge badge-light"> C#</a>
+                      <a href="/tags/oss" class="badge badge-light"> OSS</a>
+                      <a href="/tags/opinion" class="badge badge-light"> Opinion</a>
+                      <a href="/tags/nuget" class="badge badge-light"> NuGet</a>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <div class="container"y> 
+    <div class="row">
+      <div id="content" class="col-md-12" data-pagefind-body >  
+        <p>Back in 2021 I wrote about <a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack">my preferred .NET console stack</a>, an opinionated alternative to <code>dotnet new console</code> built around <a href="https://spectresystems.github.io/spectre.console/">Spectre.Console</a>, dependency injection, and structured logging. That recipe worked well, and I've since used it as the foundation for several tools, including <a href="https://github.com/devlead/ARI">ARI</a>, <a href="https://github.com/devlead/Blobify">Blobify</a>, <a href="https://github.com/devlead/DPI">DPI</a>, <a href="https://github.com/devlead/bri">BRI</a>, and <a href="https://github.com/WCOMAB/AZDOI">AZDOI</a>. The original approach shipped everything as a .NET template, which was great for getting started, but over time I ran into a familiar problem: templates are excellent for scaffolding, yet not so great for keeping shared bootstrap code in sync across many applications.</p>
+<p>This post is a follow-up on how I've evolved that stack. The template still scaffolds new projects, but the shared glue code now lives in <a href="https://www.nuget.org/packages/Devlead.Console">Devlead.Console</a>, a versioned source NuGet package. That combination gives you the easy onboarding of a template with the maintainability of a normal package dependency.</p>
+<h2 id="why-templates-alone-fall-short">Why templates alone fall short</h2>
+<p>A .NET template is distributed as a NuGet package and installed with <code>dotnet new install</code>. When you scaffold a project, you get a snapshot of whatever the template author thought was useful at that moment. That works fine the first time.</p>
+<p>The friction shows up when you maintain more than one console application, or when the bootstrap code itself needs to evolve. If logging setup changes, Spectre.Console gets a breaking API shift, or you want to add configuration support, every project that was scaffolded from the template now has its own copy of the old glue code. You either manually merge fixes across repositories, or re-scaffold and copy your business logic back in. Neither option scales particularly well.</p>
+<p>NuGet packages solve the opposite problem nicely. Pin a version, run <code>dotnet restore</code>, and every consumer gets the same dependency. Source packages take that a step further for glue code: the <code>.cs</code> files compile into your assembly rather than hiding behind a <code>lib/</code> reference, which keeps the copy/paste ergonomics while removing drift.</p>
+<h2 id="source-packages-best-of-both-worlds">Source packages: best of both worlds</h2>
+<p>I touched on source packages last year when introducing <a href="https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing">Devlead.Testing.MockHttp</a>. The same arguments apply here:</p>
+<ul>
+<li>A source package ships <code>.cs</code> files as compile-time content under <code>contentFiles/cs/{tfm}/...</code>, not as a traditional library reference.</li>
+<li>The code is compiled into your application assembly, so you can step through it, extend it, and reason about it like your own code.</li>
+<li>You extend the shared bootstrap using partial classes and partial methods in your project, without forking the package.</li>
+<li>Versioning, release notes, and dependency update tooling (i.e. Renovate) work the same as for any other NuGet package.</li>
+</ul>
+<p>The idea is to get the copy/paste experience of inlined glue code without the copy/paste experience of fixing that same code across every project.</p>
+<div class="mermaid">flowchart LR
+    subgraph scaffold [Devlead.Console.Template]
+        AppCommands[Your commands and settings]
+        PartialProgram[Partial Program.cs]
+    end
+    subgraph shared [Devlead.Console source package]
+        Bootstrap[IoC logging config CLI wiring]
+    end
+    PartialProgram --> Bootstrap
+    AppCommands --> PartialProgram
+    NuGetRestore[NuGet version bump] --> shared
+</div>
+<h2 id="devlead.console">Devlead.Console</h2>
+<p><a href="https://github.com/devlead/Devlead.Console">Devlead.Console</a> is the source package that contains the shared bootstrap. It keeps the same opinionated philosophy as the 2021 template:</p>
+<ul>
+<li>Dependency injection via Microsoft.Extensions</li>
+<li>Command-line parsing via Spectre.Console.Cli</li>
+<li>Logging via Microsoft.Extensions.Logging.Console</li>
+<li>Configuration via Microsoft.Extensions.Configuration</li>
+<li>Source Link via the built-in .NET SDK support (no separate package reference needed)</li>
+</ul>
+<p>What changed is how you interact with it. Instead of a top-level <code>Program.cs</code> with all the wiring inlined, you implement a <code>partial class Program</code> and hook into optional partial methods:</p>
+<pre><code class="language-csharp">public partial class Program
+{
+    static partial void ConfigureInMemory(IDictionary&lt;string, string?&gt; configData)
+    {
+        configData.Add(&quot;TestService__Version&quot;, &quot;1.0.0.0&quot;);
+    }
+
+    static partial void AddServices(IServiceCollection services)
+    {
+        services
+            .AddOptions&lt;TestServiceSettings&gt;()
+            .BindConfiguration(nameof(TestService));
+
+        services.AddSingleton&lt;TestService&gt;();
+    }
+
+    static partial void ConfigureApp(AppServiceConfig appServiceConfig)
+    {
+        appServiceConfig
+            .AddCommand&lt;TestCommand&gt;(&quot;test&quot;)
+                .WithDescription(&quot;Example test command.&quot;)
+                .WithExample([&quot;test&quot;]);
+
+        appServiceConfig
+            .AddBranch(
+                &quot;yolo&quot;,
+                c =&gt; c.AddCommand&lt;TestCommand&gt;(&quot;test&quot;)
+                        .WithDescription(&quot;Example test command.&quot;)
+                        .WithExample([&quot;yolo&quot;, &quot;test&quot;])
+            );
+
+        appServiceConfig.SetApplicationName(&quot;myapp&quot;);
+    }
+}
+</code></pre>
+<p>The partial methods cover the three places you typically need to customize:</p>
+<ul>
+<li><code>ConfigureInMemory</code> for in-memory settings during development or testing</li>
+<li><code>AddServices</code> for dependency injection registrations</li>
+<li><code>ConfigureApp</code> for commands, nested branches, and the application name</li>
+</ul>
+<p>The resulting CLI supports commands like <code>myapp test</code> and <code>myapp yolo test</code>. For Spectre.Console patterns around settings classes, validation attributes, and command structure, the <a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack">2021 post</a> still applies; that part of the developer experience has not changed.</p>
+<p>If you need full control, set <code>UseDefaultProgram</code> to <code>false</code> in your project file and provide your own <code>Program</code> implementation. See the <a href="https://github.com/devlead/Devlead.Console/blob/develop/README.md">Devlead.Console README</a> for details.</p>
+<p>A typical project file references the package like any other dependency:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+  &lt;PackageReference Include=&quot;Devlead.Console&quot; Version=&quot;2026.6.23.767&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>The package multi-targets <code>net8.0</code>, <code>net9.0</code>, and <code>net10.0</code>, so you can stay on a supported LTS or current SDK without maintaining separate bootstrap code per framework.</p>
+<h2 id="devlead.console.template-today">Devlead.Console.Template today</h2>
+<p><a href="https://www.nuget.org/packages/Devlead.Console.Template">Devlead.Console.Template</a> has been refactored to use Devlead.Console. It still scaffolds a working console application, but now with minimal moving parts:</p>
+<pre><code class="language-bash">dotnet new install Devlead.Console.Template
+dotnet new devleadconsole -n MyConsole
+</code></pre>
+<p>You can also pick the target framework explicitly (<code>net8.0</code>, <code>net9.0</code>, or <code>net10.0</code>, default is <code>net10.0</code>):</p>
+<pre><code class="language-bash">dotnet new devleadconsole -n MyConsole --framework net8.0
+</code></pre>
+<p>The template owns your application-specific code: the project file, a sample command and settings class, and the partial <code>Program</code> stubs that call into the package hooks. The package owns the bootstrap: dependency injection setup, logging, configuration, Spectre.Console wiring, and the dependency versions for the shared stack.</p>
+<p>Compared to the <a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack">2021 folder layout</a>, you still get a <code>Commands</code> folder with your command, settings, and validation code. What you no longer get is a full copy of the bootstrap <code>Program.cs</code> that silently drifts from project to project.</p>
+<h2 id="devlead.sourcepack">Devlead.SourcePack</h2>
+<p>Packaging a source NuGet by hand means wrestling with MSBuild: <code>contentFiles</code>, <code>BuildAction=Compile</code>, per-target-framework paths, and making sure <code>dotnet pack</code> produces something consumers can actually restore. To simplify that, I created <a href="https://www.nuget.org/packages/Devlead.SourcePack">Devlead.SourcePack</a>, an opinionated MSBuild package for authoring source NuGet packages using the standard SDK <code>dotnet pack</code> workflow.</p>
+<p>Devlead.Console is built with Devlead.SourcePack, as is <a href="https://www.nuget.org/packages/Devlead.Testing.MockHttp/">Devlead.Testing.MockHttp</a>. If you want to author your own source packages, the <a href="https://github.com/devlead/Devlead.SourcePack">Devlead.SourcePack README</a> covers the properties and item types. This post stays focused on consuming the console stack rather than publishing new source packages.</p>
+<h2 id="example-projects">Example projects</h2>
+<p>Devlead.Console is used in several real-world tools:</p>
+<ul>
+<li><a href="https://github.com/devlead/ARI">ARI</a> - Azure Resource Inventory, documents tenant resources as markdown</li>
+<li><a href="https://github.com/devlead/Blobify">Blobify</a> - archives local files to Azure Blob Storage</li>
+<li><a href="https://github.com/devlead/bri">BRI</a> - Bicep Registry Inventory, documents modules in an Azure container registry</li>
+<li><a href="https://github.com/devlead/DPI">DPI</a> - Dependency Inventory, reports NuGet dependencies to Azure Log Analytics</li>
+<li><a href="https://github.com/WCOMAB/AZDOI">AZDOI</a> - Azure DevOps Inventory, documents an Azure DevOps organization (a community project I've had the pleasure of mentoring)</li>
+<li><a href="https://github.com/devlead/UnpackDacPac">UnpackDacPac</a> - unpacks SQL Server DACPAC files</li>
+</ul>
+<p>Each of these started from the same opinionated bootstrap and then added domain-specific commands and services on top.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Install the template and scaffold a new project:</p>
+<pre><code class="language-bash">dotnet new install Devlead.Console.Template
+dotnet new devleadconsole -n MyTool
+</code></pre>
+<p>The template includes a <code>PackageReference</code> to Devlead.Console. To update to a newer version:</p>
+<pre><code class="language-bash">dotnet add package Devlead.Console
+</code></pre>
+<p>From there, replace the sample command with your own, register services in <code>AddServices</code>, and wire up commands in <code>ConfigureApp</code>. The <a href="https://github.com/devlead/Devlead.Console/blob/develop/README.md">Devlead.Console README</a> has the full API reference.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>My console stack still boils down to the same ingredients: Spectre.Console for CLI parsing, Microsoft.Extensions for DI, logging, and configuration. What changed is where the shared wiring lives. The template scaffolds; the source package maintains. That split keeps the happy path from 2021 while making it practical to evolve the bootstrap across many tools without drift.</p>
+<p>Feel free to let me know if you've got your own recipe for console applications, or if you try this approach and have feedback.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/devlead/Devlead.Console">Devlead.Console</a> (<a href="https://www.nuget.org/packages/Devlead.Console">NuGet</a>)</li>
+<li><a href="https://github.com/devlead/Devlead.Console.Template">Devlead.Console.Template</a> (<a href="https://www.nuget.org/packages/Devlead.Console.Template">NuGet</a>)</li>
+<li><a href="https://github.com/devlead/Devlead.SourcePack">Devlead.SourcePack</a> (<a href="https://www.nuget.org/packages/Devlead.SourcePack">NuGet</a>)</li>
+<li><a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack">My preferred .NET console stack (2021)</a></li>
+<li><a href="https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing">Introducing Devlead.Testing.MockHttp (2025)</a></li>
+<li><a href="https://spectresystems.github.io/spectre.console/">Spectre.Console</a> (<a href="https://www.nuget.org/packages/Spectre.Console">NuGet</a>)</li>
+<li><a href="https://www.nuget.org/packages/Spectre.Console.Cli">Spectre.Console.Cli</a> (<a href="https://www.nuget.org/packages/Spectre.Console.Cli">NuGet</a>)</li>
+</ul>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small">This post is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a></p>
+                    <p><div class="sponsorship">
+    <a class="btn btn-lg btn-outline-primary btn-block" href="https://github.com/sponsors/devlead" title="Sponsor Mattias Karlsson on GitHub">
+        <i class="fa fa-heart"></i>
+        Sponsor Mattias
+    </a>
+</div></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small"><a href="https://github.com/devlead/devlead.se/edit/main/src/DevLead/input/posts/2026/2026-06-27-template-plus-source-package-my-dotnet-console-stack-in-2026.md"><i class="fas fa-edit"></i> Edit This Page <i class="fab fa-github"></i> </a></p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->  
+  <footer>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted m-0">&#xA9; Mattias Karlsson 2026</p>
+                    <br />
+                    <div id="search"></div>
+                    <br />
+                    <ul class="list-inline text-center small">
+                            <li class="list-inline-item">
+                                <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                            </li>
+                    </ul>
+                    <br />
+                    <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+                </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js" integrity="sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I" crossorigin="anonymous"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ 
+            element: "#search",
+            showSubResults: true,
+             processResult: function (result) { 
+                result.meta.image = result.meta.image.replaceAll("&amp;", "&");
+                return result;
+            }
+        });
+        
+    });
+</script>
+
+  
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/clean-blog.js"></script>
+
+</body>
+
+</html>

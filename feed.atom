@@ -4,8 +4,152 @@
 	<title>@devlead - Mattias Karlsson's Blog</title>
 	<link rel="self" href="https://www.devlead.se/" />
 	<rights>© Mattias Karlsson 2026</rights>
-	<updated>2026-06-19T06:02:43Z</updated>
+	<updated>2026-06-27T20:59:24Z</updated>
 	<logo>https://cdn.devlead.se/clipimg-vscode/2021/01/11/1f2af322-a19f-753d-bd3e-00118dc674f1.png?sv=2019-12-12&amp;st=2021-01-10T15%253A16%253A48Z&amp;se=2031-01-11T15%253A16%253A48Z&amp;sr=b&amp;sp=r&amp;sig=RYHdZjTvO%252Fw0tUGsgnIiGJRhTiQQPHnEsSKtnV14Yoc%253D</logo>
+	<entry>
+		<id>https://www.devlead.se/posts/2026/2026-06-27-template-plus-source-package-my-dotnet-console-stack-in-2026</id>
+		<title>Template plus source package: my .NET console stack in 2026</title>
+		<author>
+			<name>devlead</name>
+		</author>
+		<link href="https://www.devlead.se/posts/2026/2026-06-27-template-plus-source-package-my-dotnet-console-stack-in-2026" />
+		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2026/06/27/7ffc8a51-5450-4250-8ab6-18f19c5a3984.png?sv=2023-01-03&amp;st=2026-06-27T20%253A01%253A18Z&amp;se=2036-06-28T20%253A01%253A00Z&amp;sr=b&amp;sp=r&amp;sig=%252F70LfFDhc%252BqiQaMwceWIoqODYiQBnLfQevfdXT6G4BM%253D" />
+		<updated>2026-06-27T00:00:00Z</updated>
+		<content>&lt;p&gt;Back in 2021 I wrote about &lt;a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack"&gt;my preferred .NET console stack&lt;/a&gt;, an opinionated alternative to &lt;code&gt;dotnet new console&lt;/code&gt; built around &lt;a href="https://spectresystems.github.io/spectre.console/"&gt;Spectre.Console&lt;/a&gt;, dependency injection, and structured logging. That recipe worked well, and I've since used it as the foundation for several tools, including &lt;a href="https://github.com/devlead/ARI"&gt;ARI&lt;/a&gt;, &lt;a href="https://github.com/devlead/Blobify"&gt;Blobify&lt;/a&gt;, &lt;a href="https://github.com/devlead/DPI"&gt;DPI&lt;/a&gt;, &lt;a href="https://github.com/devlead/bri"&gt;BRI&lt;/a&gt;, and &lt;a href="https://github.com/WCOMAB/AZDOI"&gt;AZDOI&lt;/a&gt;. The original approach shipped everything as a .NET template, which was great for getting started, but over time I ran into a familiar problem: templates are excellent for scaffolding, yet not so great for keeping shared bootstrap code in sync across many applications.&lt;/p&gt;
+&lt;p&gt;This post is a follow-up on how I've evolved that stack. The template still scaffolds new projects, but the shared glue code now lives in &lt;a href="https://www.nuget.org/packages/Devlead.Console"&gt;Devlead.Console&lt;/a&gt;, a versioned source NuGet package. That combination gives you the easy onboarding of a template with the maintainability of a normal package dependency.&lt;/p&gt;
+&lt;h2 id="why-templates-alone-fall-short"&gt;Why templates alone fall short&lt;/h2&gt;
+&lt;p&gt;A .NET template is distributed as a NuGet package and installed with &lt;code&gt;dotnet new install&lt;/code&gt;. When you scaffold a project, you get a snapshot of whatever the template author thought was useful at that moment. That works fine the first time.&lt;/p&gt;
+&lt;p&gt;The friction shows up when you maintain more than one console application, or when the bootstrap code itself needs to evolve. If logging setup changes, Spectre.Console gets a breaking API shift, or you want to add configuration support, every project that was scaffolded from the template now has its own copy of the old glue code. You either manually merge fixes across repositories, or re-scaffold and copy your business logic back in. Neither option scales particularly well.&lt;/p&gt;
+&lt;p&gt;NuGet packages solve the opposite problem nicely. Pin a version, run &lt;code&gt;dotnet restore&lt;/code&gt;, and every consumer gets the same dependency. Source packages take that a step further for glue code: the &lt;code&gt;.cs&lt;/code&gt; files compile into your assembly rather than hiding behind a &lt;code&gt;lib/&lt;/code&gt; reference, which keeps the copy/paste ergonomics while removing drift.&lt;/p&gt;
+&lt;h2 id="source-packages-best-of-both-worlds"&gt;Source packages: best of both worlds&lt;/h2&gt;
+&lt;p&gt;I touched on source packages last year when introducing &lt;a href="https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing"&gt;Devlead.Testing.MockHttp&lt;/a&gt;. The same arguments apply here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A source package ships &lt;code&gt;.cs&lt;/code&gt; files as compile-time content under &lt;code&gt;contentFiles/cs/{tfm}/...&lt;/code&gt;, not as a traditional library reference.&lt;/li&gt;
+&lt;li&gt;The code is compiled into your application assembly, so you can step through it, extend it, and reason about it like your own code.&lt;/li&gt;
+&lt;li&gt;You extend the shared bootstrap using partial classes and partial methods in your project, without forking the package.&lt;/li&gt;
+&lt;li&gt;Versioning, release notes, and dependency update tooling (i.e. Renovate) work the same as for any other NuGet package.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The idea is to get the copy/paste experience of inlined glue code without the copy/paste experience of fixing that same code across every project.&lt;/p&gt;
+&lt;div class="mermaid"&gt;flowchart LR
+    subgraph scaffold [Devlead.Console.Template]
+        AppCommands[Your commands and settings]
+        PartialProgram[Partial Program.cs]
+    end
+    subgraph shared [Devlead.Console source package]
+        Bootstrap[IoC logging config CLI wiring]
+    end
+    PartialProgram --&gt; Bootstrap
+    AppCommands --&gt; PartialProgram
+    NuGetRestore[NuGet version bump] --&gt; shared
+&lt;/div&gt;
+&lt;h2 id="devlead.console"&gt;Devlead.Console&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/devlead/Devlead.Console"&gt;Devlead.Console&lt;/a&gt; is the source package that contains the shared bootstrap. It keeps the same opinionated philosophy as the 2021 template:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dependency injection via Microsoft.Extensions&lt;/li&gt;
+&lt;li&gt;Command-line parsing via Spectre.Console.Cli&lt;/li&gt;
+&lt;li&gt;Logging via Microsoft.Extensions.Logging.Console&lt;/li&gt;
+&lt;li&gt;Configuration via Microsoft.Extensions.Configuration&lt;/li&gt;
+&lt;li&gt;Source Link via the built-in .NET SDK support (no separate package reference needed)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What changed is how you interact with it. Instead of a top-level &lt;code&gt;Program.cs&lt;/code&gt; with all the wiring inlined, you implement a &lt;code&gt;partial class Program&lt;/code&gt; and hook into optional partial methods:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public partial class Program
+{
+    static partial void ConfigureInMemory(IDictionary&amp;lt;string, string?&amp;gt; configData)
+    {
+        configData.Add(&amp;quot;TestService__Version&amp;quot;, &amp;quot;1.0.0.0&amp;quot;);
+    }
+
+    static partial void AddServices(IServiceCollection services)
+    {
+        services
+            .AddOptions&amp;lt;TestServiceSettings&amp;gt;()
+            .BindConfiguration(nameof(TestService));
+
+        services.AddSingleton&amp;lt;TestService&amp;gt;();
+    }
+
+    static partial void ConfigureApp(AppServiceConfig appServiceConfig)
+    {
+        appServiceConfig
+            .AddCommand&amp;lt;TestCommand&amp;gt;(&amp;quot;test&amp;quot;)
+                .WithDescription(&amp;quot;Example test command.&amp;quot;)
+                .WithExample([&amp;quot;test&amp;quot;]);
+
+        appServiceConfig
+            .AddBranch(
+                &amp;quot;yolo&amp;quot;,
+                c =&amp;gt; c.AddCommand&amp;lt;TestCommand&amp;gt;(&amp;quot;test&amp;quot;)
+                        .WithDescription(&amp;quot;Example test command.&amp;quot;)
+                        .WithExample([&amp;quot;yolo&amp;quot;, &amp;quot;test&amp;quot;])
+            );
+
+        appServiceConfig.SetApplicationName(&amp;quot;myapp&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The partial methods cover the three places you typically need to customize:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ConfigureInMemory&lt;/code&gt; for in-memory settings during development or testing&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AddServices&lt;/code&gt; for dependency injection registrations&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConfigureApp&lt;/code&gt; for commands, nested branches, and the application name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The resulting CLI supports commands like &lt;code&gt;myapp test&lt;/code&gt; and &lt;code&gt;myapp yolo test&lt;/code&gt;. For Spectre.Console patterns around settings classes, validation attributes, and command structure, the &lt;a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack"&gt;2021 post&lt;/a&gt; still applies; that part of the developer experience has not changed.&lt;/p&gt;
+&lt;p&gt;If you need full control, set &lt;code&gt;UseDefaultProgram&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt; in your project file and provide your own &lt;code&gt;Program&lt;/code&gt; implementation. See the &lt;a href="https://github.com/devlead/Devlead.Console/blob/develop/README.md"&gt;Devlead.Console README&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;A typical project file references the package like any other dependency:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;ItemGroup&amp;gt;
+  &amp;lt;PackageReference Include=&amp;quot;Devlead.Console&amp;quot; Version=&amp;quot;2026.6.23.767&amp;quot; /&amp;gt;
+&amp;lt;/ItemGroup&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The package multi-targets &lt;code&gt;net8.0&lt;/code&gt;, &lt;code&gt;net9.0&lt;/code&gt;, and &lt;code&gt;net10.0&lt;/code&gt;, so you can stay on a supported LTS or current SDK without maintaining separate bootstrap code per framework.&lt;/p&gt;
+&lt;h2 id="devlead.console.template-today"&gt;Devlead.Console.Template today&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.nuget.org/packages/Devlead.Console.Template"&gt;Devlead.Console.Template&lt;/a&gt; has been refactored to use Devlead.Console. It still scaffolds a working console application, but now with minimal moving parts:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet new install Devlead.Console.Template
+dotnet new devleadconsole -n MyConsole
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can also pick the target framework explicitly (&lt;code&gt;net8.0&lt;/code&gt;, &lt;code&gt;net9.0&lt;/code&gt;, or &lt;code&gt;net10.0&lt;/code&gt;, default is &lt;code&gt;net10.0&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet new devleadconsole -n MyConsole --framework net8.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The template owns your application-specific code: the project file, a sample command and settings class, and the partial &lt;code&gt;Program&lt;/code&gt; stubs that call into the package hooks. The package owns the bootstrap: dependency injection setup, logging, configuration, Spectre.Console wiring, and the dependency versions for the shared stack.&lt;/p&gt;
+&lt;p&gt;Compared to the &lt;a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack"&gt;2021 folder layout&lt;/a&gt;, you still get a &lt;code&gt;Commands&lt;/code&gt; folder with your command, settings, and validation code. What you no longer get is a full copy of the bootstrap &lt;code&gt;Program.cs&lt;/code&gt; that silently drifts from project to project.&lt;/p&gt;
+&lt;h2 id="devlead.sourcepack"&gt;Devlead.SourcePack&lt;/h2&gt;
+&lt;p&gt;Packaging a source NuGet by hand means wrestling with MSBuild: &lt;code&gt;contentFiles&lt;/code&gt;, &lt;code&gt;BuildAction=Compile&lt;/code&gt;, per-target-framework paths, and making sure &lt;code&gt;dotnet pack&lt;/code&gt; produces something consumers can actually restore. To simplify that, I created &lt;a href="https://www.nuget.org/packages/Devlead.SourcePack"&gt;Devlead.SourcePack&lt;/a&gt;, an opinionated MSBuild package for authoring source NuGet packages using the standard SDK &lt;code&gt;dotnet pack&lt;/code&gt; workflow.&lt;/p&gt;
+&lt;p&gt;Devlead.Console is built with Devlead.SourcePack, as is &lt;a href="https://www.nuget.org/packages/Devlead.Testing.MockHttp/"&gt;Devlead.Testing.MockHttp&lt;/a&gt;. If you want to author your own source packages, the &lt;a href="https://github.com/devlead/Devlead.SourcePack"&gt;Devlead.SourcePack README&lt;/a&gt; covers the properties and item types. This post stays focused on consuming the console stack rather than publishing new source packages.&lt;/p&gt;
+&lt;h2 id="example-projects"&gt;Example projects&lt;/h2&gt;
+&lt;p&gt;Devlead.Console is used in several real-world tools:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/ARI"&gt;ARI&lt;/a&gt; - Azure Resource Inventory, documents tenant resources as markdown&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/Blobify"&gt;Blobify&lt;/a&gt; - archives local files to Azure Blob Storage&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/bri"&gt;BRI&lt;/a&gt; - Bicep Registry Inventory, documents modules in an Azure container registry&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/DPI"&gt;DPI&lt;/a&gt; - Dependency Inventory, reports NuGet dependencies to Azure Log Analytics&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WCOMAB/AZDOI"&gt;AZDOI&lt;/a&gt; - Azure DevOps Inventory, documents an Azure DevOps organization (a community project I've had the pleasure of mentoring)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/UnpackDacPac"&gt;UnpackDacPac&lt;/a&gt; - unpacks SQL Server DACPAC files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each of these started from the same opinionated bootstrap and then added domain-specific commands and services on top.&lt;/p&gt;
+&lt;h2 id="getting-started"&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;Install the template and scaffold a new project:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet new install Devlead.Console.Template
+dotnet new devleadconsole -n MyTool
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The template includes a &lt;code&gt;PackageReference&lt;/code&gt; to Devlead.Console. To update to a newer version:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet add package Devlead.Console
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From there, replace the sample command with your own, register services in &lt;code&gt;AddServices&lt;/code&gt;, and wire up commands in &lt;code&gt;ConfigureApp&lt;/code&gt;. The &lt;a href="https://github.com/devlead/Devlead.Console/blob/develop/README.md"&gt;Devlead.Console README&lt;/a&gt; has the full API reference.&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;My console stack still boils down to the same ingredients: Spectre.Console for CLI parsing, Microsoft.Extensions for DI, logging, and configuration. What changed is where the shared wiring lives. The template scaffolds; the source package maintains. That split keeps the happy path from 2021 while making it practical to evolve the bootstrap across many tools without drift.&lt;/p&gt;
+&lt;p&gt;Feel free to let me know if you've got your own recipe for console applications, or if you try this approach and have feedback.&lt;/p&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/Devlead.Console"&gt;Devlead.Console&lt;/a&gt; (&lt;a href="https://www.nuget.org/packages/Devlead.Console"&gt;NuGet&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/Devlead.Console.Template"&gt;Devlead.Console.Template&lt;/a&gt; (&lt;a href="https://www.nuget.org/packages/Devlead.Console.Template"&gt;NuGet&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/devlead/Devlead.SourcePack"&gt;Devlead.SourcePack&lt;/a&gt; (&lt;a href="https://www.nuget.org/packages/Devlead.SourcePack"&gt;NuGet&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devlead.se/posts/2021/2021-01-15-my-preferred-console-stack"&gt;My preferred .NET console stack (2021)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing"&gt;Introducing Devlead.Testing.MockHttp (2025)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://spectresystems.github.io/spectre.console/"&gt;Spectre.Console&lt;/a&gt; (&lt;a href="https://www.nuget.org/packages/Spectre.Console"&gt;NuGet&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.nuget.org/packages/Spectre.Console.Cli"&gt;Spectre.Console.Cli&lt;/a&gt; (&lt;a href="https://www.nuget.org/packages/Spectre.Console.Cli"&gt;NuGet&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+		<summary>How Devlead.Console and a slim template fix template drift while keeping the same opinionated console bootstrap</summary>
+	</entry>
 	<entry>
 		<id>https://www.devlead.se/posts/2026/2026-03-22-quarter-billion-nuget-downloads</id>
 		<title>A quarter of a billion NuGet downloads</title>
@@ -1241,78 +1385,5 @@ await Verify(responses);
 &lt;/ul&gt;
 </content>
 		<summary>Initial reflections after running .NET 9 in production</summary>
-	</entry>
-	<entry>
-		<id>https://www.devlead.se/posts/2024/2024-09-05-introducing-blobify</id>
-		<title>Introducing Blobify</title>
-		<author>
-			<name>devlead</name>
-		</author>
-		<link href="https://www.devlead.se/posts/2024/2024-09-05-introducing-blobify" />
-		<link rel="enclosure" type="image" href="https://cdn.devlead.se/clipimg-vscode/2024/09/05/fe73bb0124cc43a1af9520490a6367a8.jpg?sp=r&amp;st=2024-09-04T18:14:45Z&amp;se=2035-05-01T02:14:45Z&amp;spr=https&amp;sv=2022-11-02&amp;sr=b&amp;sig=HuC7WPifcu40wqwTXUZJ77qxzzfs%252BKtSKrkbJrmbqJw%253D" />
-		<updated>2024-09-05T00:00:00Z</updated>
-		<content>&lt;p&gt;I recently needed a seamless and efficient way to recursively archive and move local files to Azure Blob Storage with relative folder structure intact. That’s why I wrote Blobify, a .NET global tool that simplifies the process of transferring files from a local directory to an Azure Blob Storage container.&lt;/p&gt;
-&lt;h2 id="easy-installation-with.net-sdk-cli"&gt;Easy Installation with .NET SDK CLI&lt;/h2&gt;
-&lt;p&gt;Blobify is installed using the .NET SDK CLI. Ensure you have the .NET 8 SDK installed, and type the following command:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet tool install -g Blobify
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="simple-and-powerful-command-line-options"&gt;Simple and Powerful Command Line Options&lt;/h2&gt;
-&lt;p&gt;Utilizing Blobify is straightforward with its archive command and options.&lt;/p&gt;
-&lt;h3 id="usage"&gt;Usage&lt;/h3&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;blobify archive &amp;lt;inputpath&amp;gt; &amp;lt;azureStorageAccount&amp;gt; &amp;lt;azureStorageAccountContainer&amp;gt; [OPTIONS]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id="example"&gt;Example&lt;/h4&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;blobify archive c:\local\folder targetaccount targetcontainer
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h5 id="arguments"&gt;Arguments&lt;/h5&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;    &amp;lt;inputpath&amp;gt;                       Input path
-    &amp;lt;azureStorageAccount&amp;gt;             Azure Storage Account Name
-    &amp;lt;azureStorageAccountContainer&amp;gt;    Azure Storage Account Container Name
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h5 id="options"&gt;Options&lt;/h5&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;    -h, --help               Prints help information
-        --azure-tenant-id    Azure Tentant ID to sign into
-        --file-pattern       Local file pattern to match (default **/*.*)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="secure-authentication-and-reliable-uploads"&gt;Secure Authentication and Reliable Uploads&lt;/h2&gt;
-&lt;p&gt;Blobify ensures secure authentication using Azure EntraID and Azure.Identity's &lt;a href="https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet"&gt;DefaultAzureCredential&lt;/a&gt; . It uploads files from the specified source folder—and optionally a file pattern, and removes them locally only after verifying that a file with the same hash exists in the target blob storage container. If the file already exists on blob it won't upload it, but if hashes macthes it'll remove the local file.&lt;/p&gt;
-&lt;div class="mermaid"&gt;flowchart TD
-    ls[List files in source path]
-    exists[Verifies if blob file already exists]
-    upload[Upload file]
-    verify[Verifies MD5 hash]
-    delete[Delete file]
-    skip[Skip file]
-    ls --&gt; exists
-    exists --Found--&gt; verify
-    exists --Not Found--&gt; upload
-    upload --&gt; verify
-    verify --Matches--&gt; delete
-    verify --Not Matches--&gt; skip
-&lt;/div&gt;
-&lt;h2 id="example-usage-in-an-azure-devops-pipeline-task"&gt;Example Usage in an Azure DevOps Pipeline task&lt;/h2&gt;
-&lt;p&gt;My personal use case was to archive local files on a schedules, this was achived with a scheduled Azure DevOps Pipelines running on a local DevOps agent, example Azure Pipelines task:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-yaml"&gt;    - task: AzureCLI&amp;#64;2
-      displayName: Archive files
-      inputs:
-        azureSubscription: 'azureSubscription'
-        scriptType: bash
-        scriptLocation: inlineScript
-        inlineScript: |
-          dotnet tool restore
-          dotnet blobify archive c:\local\agent\folder account container
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The above task expects Blobify to be installed and pinned to a specific verion using a .NET tool manifest in repository, a manifest can be created using the .NET SDK CLI&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;dotnet new tool-manifest
-dotnet tool install Blobify
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="open-source-and-free-to-use"&gt;Open Source and Free to Use&lt;/h2&gt;
-&lt;p&gt;Blobify is available for free on NuGet and is open source, with its code accessible on GitHub. It is licensed under the permissive MIT license.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NuGet Package: &lt;a href="https://www.nuget.org/packages/Blobify/"&gt;Blobify on NuGet&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;GitHub Repository: &lt;a href="https://github.com/devlead/Blobify"&gt;Blobify on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-		<summary>A .NET Global tool that archives (moves) files from a local folder to an Azure Blob Storage container.</summary>
 	</entry>
 </feed>
