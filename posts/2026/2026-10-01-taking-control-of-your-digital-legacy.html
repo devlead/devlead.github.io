@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A practical inventory, five categories, and the platform features that decide what happens to your domains, repositories, and accounts when you&#x27;re not around">
+    <meta name="author" content="devlead">
+
+  <title>@devlead - Mattias Karlsson&#x27;s Blog - Taking control of your digital legacy</title>
+
+  <link rel="canonical" href="https://www.devlead.se/posts/2026/2026-10-01-taking-control-of-your-digital-legacy">
+
+      <link type="application/rss+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.atom" />
+  
+  <meta name="application-name" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-tooltip" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="@devlead - Mattias Karlsson&#x27;s Blog - Taking control of your digital legacy" />
+    <meta property="og:image" content="https://cdn.devlead.se/clipimg-vscode/2026/09/08/db19f5c0-720f-4b67-bb17-c955c277cfef.png?sv=2025-07-05&amp;spr=https&amp;st=2026-09-07T06%3A24%3A00Z&amp;se=2036-09-09T18%3A24%3A00Z&amp;sr=b&amp;sp=r&amp;sig=%2BTtg8EJkusoqQt5q80iO%2Bb%2Fh%2BUMKxT7m9S1tp5Y7azc%3D" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devlead.se/posts/2026/2026-10-01-taking-control-of-your-digital-legacy" />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/scss/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css' data-no-mirror>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' data-no-mirror>
+  
+  <!-- Custom styles for this template -->
+  <link href="/scss/clean-blog.css" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/themes/prism.css">
+
+  <!-- Lunr search -->
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+.sponsorship { text-align: center; margin-top: 1em; }
+.sponsorship a { text-decoration: none; }
+.sponsorship a i.fa-heart { color: red; }
+.sponsorship a:hover i { color: white; transition-property: color; transition-duration: 350ms; }
+</style>
+<link href="/scss/TabGroup.css" rel="stylesheet" type="text/css">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">@devlead - Mattias Karlsson&#x27;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/posts">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url(&quot;https://cdn.devlead.se/clipimg-vscode/2026/09/08/db19f5c0-720f-4b67-bb17-c955c277cfef.png?sv=2025-07-05&amp;spr=https&amp;st=2026-09-07T06%3A24%3A00Z&amp;se=2036-09-09T18%3A24%3A00Z&amp;sr=b&amp;sp=r&amp;sig=%2BTtg8EJkusoqQt5q80iO%2Bb%2Fh%2BUMKxT7m9S1tp5Y7azc%3D&quot;)">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-heading">
+          <h1>
+            Taking control of your digital legacy
+          </h1>
+            <h2 class="subheading">A practical inventory, five categories, and the platform features that decide what happens to your domains, repositories, and accounts when you&#x27;re not around</h2>
+              <div class="meta">Published on Thursday, 1 October 2026</div>
+                <div class="mt-3">
+                      <a href="/tags/oss" class="badge badge-light"> OSS</a>
+                      <a href="/tags/personal" class="badge badge-light"> Personal</a>
+                      <a href="/tags/process" class="badge badge-light"> Process</a>
+                      <a href="/tags/opinion" class="badge badge-light"> Opinion</a>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <div class="container"y> 
+    <div class="row">
+      <div id="content" class="col-md-12" data-pagefind-body >  
+        <p>A couple of years ago I sat at a close friend's kitchen table together with his wife. He was gone. We spent hours trying to make sense of what he'd left behind online: domains, virtual private servers, source repositories, online accounts, subscriptions, decades of accumulated technologist debris. Most of it made no sense to her, and honestly, plenty of it didn't make much sense to me either. We were grieving, crying and laughing at the same time, while trying to put a lifetime of digital footprint into some kind of order.</p>
+<p>That evening, plus a few other events around the same time, got me thinking. I live in what I jokingly call a mixed marriage, geek and normal, and I never want to leave my wife or my kids in that position. So this post is about the exercise I've been doing since: taking inventory of my digital life and deciding up front what should happen to it. I talked about that same exercise with Carl Franklin and Richard Campbell on <a href="https://www.dotnetrocks.com/details/2022">.NET Rocks - Episode 2022</a>, and the episode coming out today is what finally took this from draft to public.</p>
+<h2 id="why-this-is-practical-rather-than-morbid">Why this is practical rather than morbid</h2>
+<p>For the foreseeable future the earth will keep spinning whether I'm here or not. The only open question is what I hand over.</p>
+<p>As a Swede, feelings and emotions can be hard to talk about, but we're very good at being practical. So make this a practical exercise rather than an emotional one. We even have a word for the analog version, <em>döstädning</em>, death cleaning, the habit of clearing out your things while you still can so nobody else has to guess later. This is the same thing applied to your digital life, and as with the original, most of the value is in the cleaning and not in the dying.</p>
+<p>It's also not only about death. It's equally about a hospital stay, burnout, a bad accident, or three weeks somewhere without signal. And I'm not unique here. There are countless developers, IT pros, makers and open source maintainers with families who don't live at the same level of geekery.</p>
+<p>A caveat before the how. This is my highly subjective personal point of view, arrived at through one evening that shook me and a couple of years of chewing on it afterwards. It isn't a standard, and it certainly isn't legal advice. Your assets, your family and your jurisdiction all differ from mine, so take what follows as inspiration rather than a checklist to copy, keep the parts that fit and work out what actually works for you. I'd expect plenty of people to land somewhere different, and that's entirely as it should be.</p>
+<p>And a second, lighter warning, of the here be dragons variety. This is written by a geek, so there are tables ahead, along with bulleted lists and at least one directed graph. Sorting things into rows and boxes is how I process them, which is more or less the thesis of this whole post, so I won't apologize for it. ❤️</p>
+<h2 id="a-digital-bill-of-materials">A digital bill of materials</h2>
+<p>What I ended up with is best described as a digital bill of materials for a life spent online. Not a legal document first, an inventory first, because you can't hand over what you've never listed.</p>
+<p>Six questions to ask yourself:</p>
+<ol>
+<li>What should die with me, and what should live on?</li>
+<li>Who needs access to what?</li>
+<li>Which domains are actually valuable?</li>
+<li>What happens to the open source projects I maintain?</li>
+<li>Have I identified successors where that makes sense?</li>
+<li>Where are the credentials, and who can get to them when needed?</li>
+</ol>
+<h2 id="five-categories-for-every-asset">Five categories for every asset</h2>
+<p>Sorting each asset into one of five buckets is the part I've found genuinely useful, because it turns a vague sense of unease into a decision per item.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Personal ownership</strong></td>
+<td>Projects I want to remain under my control for as long as I'm breathing.</td>
+</tr>
+<tr>
+<td><strong>Emergency succession</strong></td>
+<td>Projects someone else can take over if I'm temporarily incapacitated.</td>
+</tr>
+<tr>
+<td><strong>Temporary delegation</strong></td>
+<td>Projects I'm happy for someone else to maintain while I'm away or on vacation.</td>
+</tr>
+<tr>
+<td><strong>Open succession</strong></td>
+<td>Projects I'm happy for someone else to take over at any time.</td>
+</tr>
+<tr>
+<td><strong>Personal legacy</strong></td>
+<td>Projects I want to remain tied to me and <em>not</em> be transferred to someone else.</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>Personal legacy is the category people forget. Not everything deserves a handover, and pushing a project onto someone out of a vague sense of duty isn't a favor to anyone. Sometimes the right answer is a graceful archive and a README that says &quot;this is done&quot;.</p>
+<h2 id="what-to-inventory">What to inventory</h2>
+<p>The list below is roughly the order in which things break when nobody's looking after them:</p>
+<ul>
+<li>Domains and DNS registrars, by far the most common point of silent failure.</li>
+<li>Virtual private servers, cloud subscriptions, hosting, storage.</li>
+<li>Source control accounts and organizations.</li>
+<li>Package registries, i.e. NuGet, npm, PyPI, Docker Hub, and marketplace extensions.</li>
+<li>Code signing certificates and keys.</li>
+<li>Two-factor authentication, i.e. authenticator apps, hardware keys, and recovery codes.</li>
+<li>Email, the root account that can reset almost everything else.</li>
+<li>Recurring payments and the card they're on. What breaks when that card expires?</li>
+<li>Community identities, i.e. blogs, YouTube, podcasts, and Discord or Slack ownership.</li>
+<li>The physical layer, i.e. the NAS, the home lab, the backups, and the drawer of drives. If you need somewhere to put the contents of that drawer, <a href="https://www.devlead.se/posts/2024/2024-09-05-introducing-blobify">Blobify</a> is what I use to archive local folders to Azure Blob Storage.</li>
+</ul>
+<p>That order isn't arbitrary. Most of the list only stays reachable because something above it still works, and the shape of that is worth seeing before you decide who gets what.</p>
+<div class="mermaid">flowchart TD
+    Registrar[Domain registrar account]
+    DNS[DNS and MX records]
+    MFA["2FA app, hardware keys, recovery codes"]
+    Mailbox[Email mailbox]
+    Vault[Password manager vault]
+
+    subgraph downstream [Everything&amp;nbsp;that&amp;nbsp;recovers&amp;nbsp;through&amp;nbsp;email]
+        Git[Source control accounts]
+        Registries[Package registries]
+        Cloud["Cloud, hosting and subscriptions"]
+        Payments[Recurring payments and the card]
+        Community[Community identities]
+    end
+
+    Registrar --> DNS
+    DNS --> Mailbox
+    MFA --> Mailbox
+    MFA --> Vault
+    Mailbox --> downstream
+    Vault --> downstream
+</div>
+<p>Three things gate almost everything else, the mailbox, the vault and the second factor. And one thing gates the mailbox, which is why domains and registrars sit at the top of that list rather than the bottom.</p>
+<p>Package registries deserve a special mention. When I wrote about <a href="https://www.devlead.se/posts/2026/2026-03-22-quarter-billion-nuget-downloads">a quarter of a billion NuGet downloads</a> I called the number vanity, and it is, but the responsibility behind it isn't. Every one of those downloads is someone depending on a package that has exactly one owner listed somewhere.</p>
+<p>There's also a security dimension that goes well beyond continuity. A package account that nobody is watching is a supply chain problem waiting to happen. If those credentials end up in the wrong hands, whoever holds them can push a new version straight into every build that already trusts the package, and it'll be restored and executed on developer machines and build agents without anyone reviewing a line of it. An unmaintained package is unfortunate, but an unmaintained package that somebody else can still publish to is a liability, and it's a liability you handed over by not deciding anything.</p>
+<h2 id="who-inherits-your-git-account">Who inherits your Git account</h2>
+<p>Most Git hosting providers have thought about this, and they've landed in surprisingly different places.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Native successor setting</th>
+<th>What the successor receives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>Yes, in-app</td>
+<td>Archive or transfer public repositories, but no login access</td>
+</tr>
+<tr>
+<td><strong>GitLab</strong></td>
+<td>Yes, in-app</td>
+<td>Full, permanent access to and ownership of the account</td>
+</tr>
+<tr>
+<td><strong>Bitbucket</strong></td>
+<td>No, manual</td>
+<td>Case-by-case repository transfer or closure via support</td>
+</tr>
+<tr>
+<td><strong>Codeberg</strong></td>
+<td>No, manual</td>
+<td>Case-by-case repository management via admin support</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>Note the difference between account inheritance and project continuity. A <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/access-to-repositories#about-successors">GitHub successor</a> can rescue the public code but never becomes you, which I'd argue is the correct design. <a href="https://docs.gitlab.com/user/profile/account/account_succession/">GitLab</a> goes the other way and lets the successor assume the account itself, with commits and comments still showing your username. Both are defensible, they're just answers to different questions.</p>
+<h3 id="the-better-answer-for-most-projects-is-an-organization">The better answer for most projects is an organization</h3>
+<p>Account succession is a baseball bat. It's blunt, it's all or nothing, and it only swings once, after you're gone or incapacitated. An organization is a scalpel, and it works while you're still very much alive.</p>
+<ul>
+<li><strong>The moment a project has any success, move it out of your personal account and into an organization.</strong> Not because you're dying, but because one-person-shaped projects break in a dozen boring ways long before that.</li>
+<li>An organization supports multiple maintainers natively. No succession event required, no support ticket, no waiting period.</li>
+<li>Per-organization membership means you choose deliberately who's in what. Your weekend experiment and your serious library can have completely different rosters, whereas account succession is one blast radius for everything you own.</li>
+<li>Ownership becomes a role you can grant and revoke, not an identity someone has to inherit whole.</li>
+<li>It maps cleanly onto the five categories above. Open succession and emergency succession projects belong in organizations, while personal legacy projects can stay on your account precisely because you don't want them handed on.</li>
+<li>As a bonus the URL stops being <code>github.com/yourname/thing</code>. The project's identity detaches from yours, which is most of the migration problem solved years before anyone needs it.</li>
+</ul>
+<p>One caveat: an organization still needs more than one owner. An organization whose single owner is you has exactly the same problem you started with, just with extra steps.</p>
+<p>None of this is new advice, it's just the same advice with a different motivation. Back in 2017 I wrote about <a href="https://www.devlead.se/posts/2017/2017-01-25-being-a-good-open-source-citizen">being a good open source citizen</a> and put &quot;get a team&quot; near the end, because sooner or later life throws you a curveball and it's such a relief to have someone who can keep merging and answering when you're not able to. And when I joined the <a href="https://www.devlead.se/posts/2021/2021-09-23-joining-the-net-foundation-board-of-directors">.NET Foundation Board of Directors</a> I argued that nothing is sustainable if maintainers and community leaders burn out, and that you shouldn't set things in motion you've got no plan for how to maintain. A digital will is that plan, written down for the one case you can't fix yourself.</p>
+<h2 id="emergency-access-in-your-password-manager">Emergency access in your password manager</h2>
+<p>An inventory is only half of it. Somebody has to be able to open the box.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>In-app emergency feature</th>
+<th>How it works for a successor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bitwarden</strong></td>
+<td>Yes, built in</td>
+<td>View-only or full takeover after a wait time you configure</td>
+</tr>
+<tr>
+<td><strong>LastPass</strong></td>
+<td>Yes, built in</td>
+<td>Trusted contact requests vault access after a pre-set wait period</td>
+</tr>
+<tr>
+<td><strong>Proton Pass</strong></td>
+<td>Yes, account wide</td>
+<td>Full access for up to five contacts after the wait time you set</td>
+</tr>
+<tr>
+<td><strong>1Password</strong></td>
+<td>No, kit based</td>
+<td>Requires sharing your printed Emergency Kit or recovery code</td>
+</tr>
+<tr>
+<td><strong>Dashlane</strong></td>
+<td>No, manual</td>
+<td>Feature removed, so it needs recovery keys or a legal executor</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>The wait time is the elegant bit. The contact requests access, you get a window in which to decline, and if you never respond the request is granted. A dead man's switch, but a polite one. <a href="https://bitwarden.com/help/add-and-manage-trusted-emergency-contacts/">Bitwarden</a> additionally lets you pick whether the contact gets read-only visibility or a full takeover, which is a distinction worth thinking about before you pick a person.</p>
+<p><a href="https://proton.me/support/emergency-access">Proton Pass</a> does the same thing one level up. Emergency Access, which Proton shipped in August 2025, is set on the account rather than the individual app, so a single invitation hands over the vault, the mailbox and the files together, and you can name up to five people. There's no read-only equivalent though, so whoever you pick gets the lot. Worth knowing as well that the wait time can be set to none, which turns the polite dead man's switch into an unlocked side door, so put a number of days on it even if it's a small one. It needs a paid plan, and your contact needs a Proton account of their own.</p>
+<p>The kit based approach isn't worse, it just moves the problem into the physical world. If you use <a href="https://support.1password.com/emergency-kit/">1Password</a>, the Emergency Kit only helps if it's actually been printed and stored somewhere the family can reach without needing the vault it unlocks.</p>
+<h2 id="documents-and-photos-in-cloud-storage">Documents and photos in cloud storage</h2>
+<p>Your family will care about the photos long before they care about the source code. Cloud storage is where a couple of decades of documents and family life quietly accumulate, and the big three have landed in three different places yet again.</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Native legacy feature</th>
+<th>What the contact receives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OneDrive</strong></td>
+<td>Yes, Digital legacy</td>
+<td>Read-only files and photos for one nominated contact</td>
+</tr>
+<tr>
+<td><strong>Google Drive</strong></td>
+<td>Yes, Inactive Account Manager</td>
+<td>Download of chosen data for up to ten contacts after 3 to 18 months idle</td>
+</tr>
+<tr>
+<td><strong>Dropbox</strong></td>
+<td>No, manual</td>
+<td>Estate request needing a death certificate and a court order</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p><a href="https://support.microsoft.com/en-us/onedrive/preserve-your-digital-legacy-with-onedrive">Microsoft's Digital legacy</a> is the most deliberate of the three. You nominate one trusted contact, they accept, and you get a code that you can share however you like, including writing it into your will. They enter the code, wait 72 hours, and get read-only access to your files and photos. Worth knowing that it covers OneDrive and nothing else, so the Outlook mailbox on the same account still sits behind the legal route.</p>
+<p><a href="https://support.google.com/accounts/answer/3036546">Google's Inactive Account Manager</a> comes at it from the other end. The trigger isn't death, it's inactivity, anywhere from three to eighteen months, and you can name up to ten contacts and hand each of them a different slice of the data. It's also the only one here that will action &quot;this should die with me&quot; on your behalf, since you can have Google delete the account afterwards. Just remember that it fires on silence rather than on a death certificate, so a long hospital stay counts too. <a href="https://help.dropbox.com/account-settings/access-account-of-someone-who-passed-away">Dropbox</a> has no pre-set option at all, which leaves your family opening a support ticket with a death certificate and a valid court order, and Dropbox is upfront that it can't guarantee the outcome.</p>
+<p>Which brings up a timer nobody mentions. Providers delete inactive data, i.e. Microsoft freezes OneDrive after a year with the account expiring after two, and Dropbox removes the files on an account that's been inactive for twelve months. So the legal route is racing a deletion clock, which is the worst possible pairing of a slow process and a hard deadline. It's telling that both Microsoft and Dropbox give the same first piece of advice, go and look in the synced folder on the person's laptop before anything else. Which is as good an argument as any for keeping your own copy in that drawer of drives.</p>
+<h2 id="email-the-account-that-owns-all-the-others">Email, the account that owns all the others</h2>
+<p>I put email in the inventory as the root account that can reset almost everything else, and it's worth coming back to, because it's the one entry on that list that isn't really about its own contents. Whoever can read the mailbox can request a password reset on very nearly everything else you own. So it's at once the thing your family needs most and the thing you'd least like to hand to the wrong person.</p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Native legacy feature</th>
+<th>What the contact receives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gmail</strong></td>
+<td>Yes, Inactive Account Manager</td>
+<td>The mailbox as an MBOX download, for up to ten contacts</td>
+</tr>
+<tr>
+<td><strong>iCloud Mail</strong></td>
+<td>Yes, Legacy Contact</td>
+<td>Mail, notes and backups for up to five contacts, minus the Keychain</td>
+</tr>
+<tr>
+<td><strong>Proton Mail</strong></td>
+<td>Yes, Emergency Access</td>
+<td>The whole Proton account after a wait time, for up to five contacts</td>
+</tr>
+<tr>
+<td><strong>Outlook.com</strong></td>
+<td>No, legal route only</td>
+<td>Nothing pre-authorized, so a subpoena or court order</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p><a href="https://support.apple.com/en-us/102631">Apple's Legacy Contact</a> is thorough, and it has the sharpest sting in the tail. You can name up to five people, each gets an access key, and with that plus a death certificate they get the mail along with notes, photos and device backups, and Activation Lock comes off the hardware so the devices aren't paperweights. What they don't get is the iCloud Keychain, which Apple excludes by design. That one is worth sitting with, because if Keychain <em>is</em> your password manager then the account that inherits everything hands over everything except the passwords, and every service behind them drops back to its own bereavement process.</p>
+<p>Microsoft is the gap. The Digital legacy feature from the previous section covers pictures and files, and that is the whole of it, so an Outlook.com, Hotmail or Live mailbox has no pre-authorized route at all. There's nothing to switch on tonight, and the family's only option is <a href="https://support.microsoft.com/en-us/accounts-billing/manage/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died">a subpoena or court order</a> served on Microsoft's registered agent, with no guarantee at the end of it. <a href="https://support.google.com/accounts/answer/3036546">Google</a> sits at the other extreme and hands over the mailbox as an MBOX file through Takeout, although the download link is only live for three months, so a grieving contact who isn't reading their inbox can miss the window completely.</p>
+<p>Proton is the one I find most interesting, because it's the only provider here that couldn't fall back on a legal route even if it wanted to. Zero-access encryption means Proton holds a blob it can't read, so a court order produces precisely nothing, and for years the honest answer to what happens to your Proton mailbox was that it dies with you. Emergency Access is what changed that, and because it sits on the account rather than the app, the contact you named for the vault two sections ago already covers the mailbox and the files too. One decision instead of three, which is either tidy or too many eggs in one basket depending on the mood you read it in.</p>
+<p>None of which matters if you run mail on a domain you own, and plenty of us do. The provider's legacy feature is beside the point then, because whoever controls the registrar controls the MX records, and whoever controls the MX records receives every password reset you've ever configured. That puts the registrar back at the root of the tree, which is exactly where I said the silent failures happen, and it's the reason a lapsed domain is so much worse than a lapsed website.</p>
+<p>Microsoft 365 on your own domain is a different animal again, and worth separating from the Outlook.com row above. A tenant has no concept of a legacy contact because it doesn't need one. A Global Administrator can reset the password and walk straight in, convert the mailbox to a shared one so the family can read it without paying for a license, or put a retention hold on it and <a href="https://learn.microsoft.com/en-us/purview/create-and-manage-inactive-mailboxes">export the contents through Purview</a> afterwards. Google Workspace works the same way, with a super admin in place of Inactive Account Manager. All of which is fine right until the sole Global Administrator is the person who died. Entra ID won't let you delete the last Global Administrator, which sounds protective but isn't, since it does nothing about that last one becoming unreachable. Microsoft's own answer is to keep <a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access">two or more emergency access accounts</a>, cloud only, permanently assigned the role, with the credentials written down somewhere sensible. That's break glass guidance written for enterprises, and it's the same caveat as the one about organizations needing more than one owner. It just bites harder here, because a locked tenant takes the mail, the domain and the identity down with it.</p>
+<h2 id="legal-authority-is-not-technical-access">Legal authority is not technical access</h2>
+<p>Sweden has <em>framtidsfullmakt</em>, a future power of attorney that you sign while you're still competent and which activates if you no longer are, regulated by its own act since 2017. Most countries have an equivalent, usually called a durable or lasting power of attorney.</p>
+<p>Here's the gap that took me a while to appreciate: legal authority does not grant technical access. A court can name your spouse as your representative, and the provider will still not hand over an account without credentials. The clearest local example is BankID, which is strictly personal and can't be issued to or used by an attorney, no matter what the paperwork says.</p>
+<p>So the legal document and the credential handover are two separate deliverables, and you need both. One establishes who's allowed to act, the other makes it possible for them to actually do it.</p>
+<p>Access can often be sorted out in the end, and most providers do have an appeal or next-of-kin process. The catch is that those processes take time, and time is exactly what a running digital life hasn't got. Weeks of back and forth with a support desk is weeks in which a domain doesn't get renewed, a card doesn't get updated, a certificate expires, and services go dark one by one while the paperwork is still in flight. Worst case a renewal window closes while you're waiting, and then you haven't just lost the service, you've lost the ownership, i.e. a lapsed domain that somebody else registers the moment it drops.</p>
+<h2 id="a-technical-executor-not-just-a-legal-one">A technical executor, not just a legal one</h2>
+<p>An estate usually has a legal executor, someone whose job is to settle the practical and financial affairs. What it rarely has is a technical one. The legal executor can sign things, close accounts and pay bills, but they're unlikely to know what a DNS zone is, why an expiring certificate matters, or which of forty subscriptions is the one holding twenty years of family photos.</p>
+<p>So name a technical person as well, and write down that you've done it. This doesn't have to be someone with access to everything. It's enough that it's someone your family can call, who'll understand the answer when they read your inventory out loud, and who can tell them which parts are urgent and which can wait. At that kitchen table I was that person, and I can tell you it's a considerably easier role to play when somebody has left you a list.</p>
+<p>The good thing about this role is that it pairs. The person you ask is almost certainly in the same situation you are, with their own drawer of drives and their own registrar account nobody else can log into, so offer to be theirs in return. It costs an evening each, you both end up with an inventory that a second person has actually read, and reading somebody else's is by far the quickest way to spot the holes in your own.</p>
+<h2 id="revisit-it-because-the-answers-change">Revisit it, because the answers change</h2>
+<p>Whatever you decide today has a shelf life, and it's shorter than you'd think. Not mainly because the assets change, although they do, but because the people do. A five year old has no opinion whatsoever on a Git repository, but at twenty they might care a great deal, and by then the honest answer to &quot;who should this go to&quot; could be a completely different name. It works the other way too. The friend you named as successor five years ago may have changed jobs, left the platform, or quietly stopped writing code altogether.</p>
+<p>So treat this as a living document rather than a will you sign once and file away. Once a year, read it again, confirm the named people are still the right people and still know they were named, and move things between the five categories as the answers change. The categorizing is the part that keeps its value, not the paperwork.</p>
+<h2 id="do-this-tonight">Do this tonight</h2>
+<ol>
+<li>Write the inventory. A single plain document beats a perfect system you never get around to building.</li>
+<li>Set up emergency access in your password manager. One contact and a seven day wait is a reasonable starting point.</li>
+<li>Print the recovery kit and recovery codes. Paper survives things the cloud doesn't.</li>
+<li>Name successors on GitHub and GitLab.</li>
+<li>Move the critical domains off auto-renew against a card that's about to expire, and onto something the family can actually pay.</li>
+<li>Write a plain-language README for a non-technical reader. Not &quot;the reverse proxy terminates TLS&quot;, but &quot;if the family photos stop working, call Anders&quot;.</li>
+<li>Ask one technical friend to be the person your family can call, and offer to be theirs.</li>
+<li>Pick one date a year to redo it, and tie it to something you already do so you don't have to remember it separately.</li>
+</ol>
+<p>You don't have to do all of that tonight, and you probably shouldn't try. Treat it as iterative. Start with broad strokes, a flat list of the things that would hurt to lose with a category next to each one, and accept that the first pass will be incomplete and a bit wrong. Then zoom in over time, one area per sitting, filling in registrar names, renewal dates, successors and the details that only start to matter once the big decisions are made. A rough inventory that exists is good enough to be useful, a thorough one you're still planning isn't, and every pass makes the next one shorter.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The goal was never to preserve everything. It's to make the shutdown survivable for the people who are left holding it. Your family doesn't inherit your infrastructure, they inherit your decisions about it.</p>
+<p>The side effect surprised me. Doing this made my digital life better while I'm still using it: fewer accounts, fewer subscriptions, fewer things to patch, and considerably less to defend. The best time to start was when you registered your first domain, and the second best time is this weekend.</p>
+<p>This post has been sitting in my drafts since the night after that evening in the kitchen, when I got home and needed to pop my stack of every thought that had piled up over those hours, and to start processing the loss and the feelings that came with it. It took until now to go back, read it again, and finish it. Which is its own small argument for keeping the system simple, because procrastination is the default state.</p>
+<img src="https://cdn.devlead.se/clipimg-vscode/2026/09/08/db19f5c0-720f-4b67-bb17-c955c277cfef.png?sv=2025-07-05&spr=https&st=2026-09-07T06%3A24%3A00Z&se=2036-09-09T18%3A24%3A00Z&sr=b&sp=r&sig=%2BTtg8EJkusoqQt5q80iO%2Bb%2Fh%2BUMKxT7m9S1tp5Y7azc%3D" alt="Taking control of your digital legacy" style="display: block;margin-left: auto;margin-right: auto;width: 33%;height: auto;" />
+<p><em>Potrait of me drawn by my daughter at the time. It woke me up to the fact that how I felt on the inside was reflecting on the outside a good deal more than I'd understood.</em></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/maintaining-ownership-continuity-of-your-personal-accounts-repositories">Maintaining ownership continuity of your personal account's repositories (GitHub)</a></li>
+<li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/access-to-repositories#about-successors">About successors (GitHub)</a></li>
+<li><a href="https://docs.github.com/en/site-policy/other-site-policies/github-deceased-user-policy">GitHub Deceased User Policy</a></li>
+<li><a href="https://docs.gitlab.com/user/profile/account/account_succession/">Designate an account succession beneficiary (GitLab)</a></li>
+<li><a href="https://bitwarden.com/help/add-and-manage-trusted-emergency-contacts/">Add and manage trusted emergency contacts (Bitwarden)</a></li>
+<li><a href="https://www.lastpass.com/features/emergency-access">Emergency Access (LastPass)</a></li>
+<li><a href="https://support.1password.com/emergency-kit/">Emergency Kit (1Password)</a></li>
+<li><a href="https://support.microsoft.com/en-us/onedrive/preserve-your-digital-legacy-with-onedrive">Preserve your digital legacy with OneDrive (Microsoft)</a></li>
+<li><a href="https://support.google.com/accounts/answer/3036546">About Inactive Account Manager (Google)</a></li>
+<li><a href="https://support.apple.com/en-us/102631">How to add a Legacy Contact for your Apple Account (Apple)</a></li>
+<li><a href="https://proton.me/support/emergency-access">Emergency Access (Proton)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access">Manage emergency access admin accounts (Microsoft Entra ID)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/purview/create-and-manage-inactive-mailboxes">Create and manage inactive mailboxes (Microsoft Purview)</a></li>
+<li><a href="https://support.microsoft.com/en-us/accounts-billing/manage/accessing-outlook-com-onedrive-and-other-microsoft-services-when-someone-has-died">Accessing Outlook.com, OneDrive and other services when someone has died (Microsoft)</a></li>
+<li><a href="https://help.dropbox.com/account-settings/access-account-of-someone-who-passed-away">Access the account of someone who has passed away (Dropbox)</a></li>
+<li><a href="https://www.dotnetrocks.com/details/2022">Controlling your Digital Legacy (.NET Rocks 2022)</a></li>
+<li><a href="https://www.devlead.se/posts/2017/2017-01-25-being-a-good-open-source-citizen">Being a good open source citizen (2017)</a></li>
+<li><a href="https://www.devlead.se/posts/2021/2021-09-23-joining-the-net-foundation-board-of-directors">Joining the .NET Foundation Board of Directors (2021)</a></li>
+<li><a href="https://www.devlead.se/posts/2024/2024-09-05-introducing-blobify">Introducing Blobify (2024)</a></li>
+<li><a href="https://www.devlead.se/posts/2026/2026-03-22-quarter-billion-nuget-downloads">A quarter of a billion NuGet downloads (2026)</a></li>
+</ul>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small">This post is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a></p>
+                    <p><div class="sponsorship">
+    <a class="btn btn-lg btn-outline-primary btn-block" href="https://github.com/sponsors/devlead" title="Sponsor Mattias Karlsson on GitHub">
+        <i class="fa fa-heart"></i>
+        Sponsor Mattias
+    </a>
+</div></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small"><a href="https://github.com/devlead/devlead.se/edit/main/src/DevLead/input/posts/2026/2026-10-01-taking-control-of-your-digital-legacy.md"><i class="fas fa-edit"></i> Edit This Page <i class="fab fa-github"></i> </a></p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->  
+  <footer>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted m-0">&#xA9; Mattias Karlsson 2026</p>
+                    <br />
+                    <div id="search"></div>
+                    <br />
+                    <ul class="list-inline text-center small">
+                            <li class="list-inline-item">
+                                <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                            </li>
+                    </ul>
+                    <br />
+                    <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+                </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js" integrity="sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I" crossorigin="anonymous"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ 
+            element: "#search",
+            showSubResults: true,
+             processResult: function (result) { 
+                result.meta.image = result.meta.image.replaceAll("&amp;", "&");
+                return result;
+            }
+        });
+        
+    });
+</script>
+
+  
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/clean-blog.js"></script>
+
+</body>
+
+</html>
