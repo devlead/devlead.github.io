@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A roundup of community-led .NET Foundation projects spotted at .NET Conf 2026, with takeaways from the talks I&#x27;ve watched on demand">
+    <meta name="author" content="devlead">
+
+  <title>@devlead - Mattias Karlsson&#x27;s Blog - Community projects at .NET Conf 2026, my favorites</title>
+
+  <link rel="canonical" href="https://www.devlead.se/posts/2026/2026-11-22-dotnetconf-2026-community-projects">
+
+      <link type="application/rss+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.rss" />
+      <link type="application/atom+xml" rel="alternate" title="@devlead - Mattias Karlsson&#x27;s Blog" href="/feed.atom" />
+  
+  <meta name="application-name" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-tooltip" content="@devlead - Mattias Karlsson&#x27;s Blog" />
+  <meta name="msapplication-starturl" content="/" />
+
+  <meta property="og:title" content="@devlead - Mattias Karlsson&#x27;s Blog - Community projects at .NET Conf 2026, my favorites" />
+    <meta property="og:image" content="https://cdn.devlead.se//clipimg-vscode/2026/11/22/dfc8e84a-8fc0-43d4-b597-4a0dca207c5c.png?sv=2025-07-05&amp;spr=https&amp;st=2026-11-22T12%3A25%3A04Z&amp;se=2037-11-23T12%3A25%3A00Z&amp;sr=b&amp;sp=r&amp;sig=7%2B6WoQ8EmvaGn9iYNA8UllwXjN41OO5A46Y3Rnwhx%2FY%3D" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devlead.se/posts/2026/2026-11-22-dotnetconf-2026-community-projects" />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/scss/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/brands.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css' data-no-mirror>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' data-no-mirror>
+  
+  <!-- Custom styles for this template -->
+  <link href="/scss/clean-blog.css" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/components/prism-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.19.0/themes/prism.css">
+
+  <!-- Lunr search -->
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+.sponsorship { text-align: center; margin-top: 1em; }
+.sponsorship a { text-decoration: none; }
+.sponsorship a i.fa-heart { color: red; }
+.sponsorship a:hover i { color: white; transition-property: color; transition-duration: 350ms; }
+</style>
+<link href="/scss/TabGroup.css" rel="stylesheet" type="text/css">
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+
+
+  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">@devlead - Mattias Karlsson&#x27;s Blog</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/posts">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/tags">Tags</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+</ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url(&quot;https://cdn.devlead.se//clipimg-vscode/2026/11/22/dfc8e84a-8fc0-43d4-b597-4a0dca207c5c.png?sv=2025-07-05&amp;spr=https&amp;st=2026-11-22T12%3A25%3A04Z&amp;se=2037-11-23T12%3A25%3A00Z&amp;sr=b&amp;sp=r&amp;sig=7%2B6WoQ8EmvaGn9iYNA8UllwXjN41OO5A46Y3Rnwhx%2FY%3D&quot;)">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="post-heading">
+          <h1>
+            Community projects at .NET Conf 2026, my favorites
+          </h1>
+            <h2 class="subheading">A roundup of community-led .NET Foundation projects spotted at .NET Conf 2026, with takeaways from the talks I&#x27;ve watched on demand</h2>
+              <div class="meta">Published on Sunday, 22 November 2026</div>
+                <div class="mt-3">
+                      <a href="/tags/net" class="badge badge-light"> .NET</a>
+                      <a href="/tags/oss" class="badge badge-light"> OSS</a>
+                      <a href="/tags/conference" class="badge badge-light"> Conference</a>
+                      <a href="/tags/cake" class="badge badge-light"> Cake</a>
+                      <a href="/tags/opinion" class="badge badge-light"> Opinion</a>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <div class="container"y> 
+    <div class="row">
+      <div id="content" class="col-md-12" data-pagefind-body >  
+        <p>I was one of the presenters at .NET Conf 2026, and if I'm honest, most of my attention went to my own session, <a href="https://www.youtube.com/watch?v=uszy8DGurcs">Taking Cake 7 to Eleven: Pipelines as Code with C# and .NET 11</a>. The week was busy, as I was also part of shipping <a href="https://cakebuild.net/blog/2026/11/cake-v7.0.0-released">Cake 7</a> with day one support for .NET 11. Now that every session is available on YouTube on demand, I've been catching up on the ones I missed. There was no dedicated .NET Foundation state of the union this year, but the impact of community-led projects was impossible to miss. They turned up in demos, in code samples and in the talks themselves.</p>
+<p>Here are the ones that stuck with me, starting with two favorites and then a quick roundup of the rest.</p>
+<h2 id="build-a.net-tui-in-30-minutes">Build a .NET TUI in 30 Minutes</h2>
+<p><a href="https://www.youtube.com/watch?v=BQk3T1Ljrk4">Isaac Levin's</a> talk from Community Day 1 is the one I'd point anyone to first if they want to build something in the terminal. Isaac walks through terminal user interfaces (TUIs) in .NET, and <a href="https://spectreconsole.net/">Spectre.Console</a> is the library he uses throughout. Prompts, tables, colors, spinners and progress bars all come from it, and the difference from plain <code>Console.WriteLine</code> is night and day once you've seen it live.</p>
+<p>What I liked most was the part about testing. Isaac shows how to mock the Spectre.Console abstractions so the UI code can be tested without a real terminal, and then separates the concerns into layers so the prompting and rendering don't leak into the rest of the application. It's a practical talk, built live, and it does exactly what the title promises.</p>
+<h2 id="c-file-based-apps-turned-up-to-11">C# File-based apps turned up to 11!</h2>
+<p><a href="https://www.youtube.com/watch?v=Yvn7liNioto">Damian Edwards'</a> Day 2 session was a live coding tour of file-based apps, starting with the basics from .NET 10 and moving on to what landed in .NET 11. No slides, just code, which I always appreciate.</p>
+<p>The part that made me smile was when Damian opened a <code>cake.cs</code> file. I'm one of the lead maintainers of Cake, so seeing it on a .NET Conf stage was nice recognition. It was great to see community projects like Cake, Humanizer and Spectre.Console getting airtime across the sessions, not just in their own talks.</p>
+<h2 id="the-rest-of-the-roundup">The rest of the roundup</h2>
+<p>Beyond the two favorites, a handful of community projects showed up across the sessions.</p>
+<ul>
+<li><strong>Rx.NET</strong>: <a href="https://www.youtube.com/watch?v=OJl-hgGrQg8">Ian Griffiths</a> talked about where Async Rx.NET is today and what's planned next. It's part of the .NET Foundation Rx.NET project, and it's a good reminder that Rx is still very much alive.</li>
+<li><strong>Oqtane and DNN</strong>: <a href="https://www.youtube.com/watch?v=PURTGbu6q_Y">Shaun Walker</a> introduced BlazorKit, which is built on Oqtane, a Blazor application framework. He also gave a bit of history on DNN, which he started back in 2003 and which is still widely used today.</li>
+<li><strong>Verify and FsCheck</strong>: <a href="https://www.youtube.com/watch?v=Yd_fI485naI">Davide Bellone's</a> talk on unit tests not being enough covers snapshot tests with Verify and property-based tests with FsCheck, all on top of xUnit. If you've ever stared at a large expected object in a test, this one is worth your time.</li>
+<li><strong>Orchard Core</strong>: <a href="https://www.youtube.com/watch?v=Xclc_0sYZ5A">Zoltán Lehóczky's</a> session on end-to-end testing uses an Orchard Core site as the demo app, combining xUnit, Selenium, accessibility checks with axe and security scanning with ZAP.</li>
+<li><strong>NUnit</strong>: <a href="https://www.youtube.com/watch?v=k_DUJR6Zhrc">Jeffrey Palermo</a> mentioned that he still uses NUnit, in this case for architecture tests that check patterns rather than behavior.</li>
+<li><strong>Polly</strong>: <a href="https://www.youtube.com/watch?v=bEaK4JIGuTc">Marc Gravell's</a> SE.Redis talk compares retries inside the library with retries you'd normally add using Polly. His argument is that the library has more context about what's going on, so it can retry when it's safe rather than just failing.</li>
+</ul>
+<h2 id="other-favorites-from.net-conf">Other favorites from .NET Conf</h2>
+<p>A few more sessions that stuck with me, beyond the community ones mentioned.</p>
+<ul>
+<li><strong><a href="https://youtu.be/ls0rNrJsnkY">What's new in C#</a></strong>: Union types and <code>closed</code> classes for exhaustive pattern matching, plus labeled <code>break</code>/<code>continue</code> and <code>with</code> args in collection expressions.</li>
+<li><strong><a href="https://youtu.be/d_2bTXnJQqQ">Moving <code>dotnet</code> Ahead (of Time)!</a></strong>: Core CLI commands running as Native AOT for snappier execution, plus deduplicated SDK downloads.</li>
+<li><strong><a href="https://youtu.be/9WDTK828qtg">More Processes, More Problems: how to speed up your builds with Multithreaded MSBuild</a></strong>: In-process worker threads (<code>-mt</code>) drastically speeding up cold and incremental builds.</li>
+</ul>
+<h2 id="closing-thoughts">Closing thoughts</h2>
+<p>What I took away is that community projects are part of the core of the .NET ecosystem. Most are maintained by volunteers, often with little thanks, so it was great to see them show up in the demos, the testing talks, and the tools people use every day, even when the session itself was about something else. Watching the sessions on demand is the best way to see that for yourself, and the full <a href="https://www.youtube.com/playlist?list=PLJL9Ln_f6sGM">.NET Conf 2026 playlist</a> is there whenever you have time.</p>
+<p>A big thank you to all the maintainers of .NET community projects. The hours spent on issues, pull requests, documentation, and releases mostly go unseen, yet they are what keep these projects alive for the rest of us. Thank you for your service.</p>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small">This post is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International License</a></p>
+                    <p><div class="sponsorship">
+    <a class="btn btn-lg btn-outline-primary btn-block" href="https://github.com/sponsors/devlead" title="Sponsor Mattias Karlsson on GitHub">
+        <i class="fa fa-heart"></i>
+        Sponsor Mattias
+    </a>
+</div></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="small"><a href="https://github.com/devlead/devlead.se/edit/main/src/DevLead/input/posts/2026/2026-11-22-dotnetconf-2026-community-projects.md"><i class="fas fa-edit"></i> Edit This Page <i class="fab fa-github"></i> </a></p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->  
+  <footer>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted m-0">&#xA9; Mattias Karlsson 2026</p>
+                    <br />
+                    <div id="search"></div>
+                    <br />
+                    <ul class="list-inline text-center small">
+                            <li class="list-inline-item">
+                                <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                            </li>
+                    </ul>
+                    <br />
+                    <div class="font-weight-bold small"><a href="https://statiq.dev">Generated by Statiq</a></div>
+                </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js" integrity="sha384-rbtjAdnIQE/aQJGEgXrVUlMibdfTSa4PQju4HDhN3sR2PmaKFzhEafuePsl9H/9I" crossorigin="anonymous"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ 
+            element: "#search",
+            showSubResults: true,
+             processResult: function (result) { 
+                result.meta.image = result.meta.image.replaceAll("&amp;", "&");
+                return result;
+            }
+        });
+        
+    });
+</script>
+
+  
+
+  <!-- Custom scripts for this template -->
+  <script src="/js/clean-blog.js"></script>
+
+</body>
+
+</html>

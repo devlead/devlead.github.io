@@ -5,8 +5,47 @@
 		<link>https://www.devlead.se/</link>
 		<description />
 		<copyright>© Mattias Karlsson 2026</copyright>
-		<pubDate>Thu, 12 Nov 2026 13:04:44 GMT</pubDate>
-		<lastBuildDate>Thu, 12 Nov 2026 13:04:44 GMT</lastBuildDate>
+		<pubDate>Sun, 22 Nov 2026 12:52:06 GMT</pubDate>
+		<lastBuildDate>Sun, 22 Nov 2026 12:52:06 GMT</lastBuildDate>
+		<item>
+			<title>Community projects at .NET Conf 2026, my favorites</title>
+			<link>https://www.devlead.se/posts/2026/2026-11-22-dotnetconf-2026-community-projects</link>
+			<description>A roundup of community-led .NET Foundation projects spotted at .NET Conf 2026, with takeaways from the talks I've watched on demand</description>
+			<author>devlead</author>
+			<enclosure url="https://cdn.devlead.se//clipimg-vscode/2026/11/22/dfc8e84a-8fc0-43d4-b597-4a0dca207c5c.png?sv=2025-07-05&amp;spr=https&amp;st=2026-11-22T12%253A25%253A04Z&amp;se=2037-11-23T12%253A25%253A00Z&amp;sr=b&amp;sp=r&amp;sig=7%252B6WoQ8EmvaGn9iYNA8UllwXjN41OO5A46Y3Rnwhx%252FY%253D" length="0" type="image" />
+			<guid>https://www.devlead.se/posts/2026/2026-11-22-dotnetconf-2026-community-projects</guid>
+			<pubDate>Sun, 22 Nov 2026 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;I was one of the presenters at .NET Conf 2026, and if I'm honest, most of my attention went to my own session, &lt;a href="https://www.youtube.com/watch?v=uszy8DGurcs"&gt;Taking Cake 7 to Eleven: Pipelines as Code with C# and .NET 11&lt;/a&gt;. The week was busy, as I was also part of shipping &lt;a href="https://cakebuild.net/blog/2026/11/cake-v7.0.0-released"&gt;Cake 7&lt;/a&gt; with day one support for .NET 11. Now that every session is available on YouTube on demand, I've been catching up on the ones I missed. There was no dedicated .NET Foundation state of the union this year, but the impact of community-led projects was impossible to miss. They turned up in demos, in code samples and in the talks themselves.&lt;/p&gt;
+&lt;p&gt;Here are the ones that stuck with me, starting with two favorites and then a quick roundup of the rest.&lt;/p&gt;
+&lt;h2 id="build-a.net-tui-in-30-minutes"&gt;Build a .NET TUI in 30 Minutes&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=BQk3T1Ljrk4"&gt;Isaac Levin's&lt;/a&gt; talk from Community Day 1 is the one I'd point anyone to first if they want to build something in the terminal. Isaac walks through terminal user interfaces (TUIs) in .NET, and &lt;a href="https://spectreconsole.net/"&gt;Spectre.Console&lt;/a&gt; is the library he uses throughout. Prompts, tables, colors, spinners and progress bars all come from it, and the difference from plain &lt;code&gt;Console.WriteLine&lt;/code&gt; is night and day once you've seen it live.&lt;/p&gt;
+&lt;p&gt;What I liked most was the part about testing. Isaac shows how to mock the Spectre.Console abstractions so the UI code can be tested without a real terminal, and then separates the concerns into layers so the prompting and rendering don't leak into the rest of the application. It's a practical talk, built live, and it does exactly what the title promises.&lt;/p&gt;
+&lt;h2 id="c-file-based-apps-turned-up-to-11"&gt;C# File-based apps turned up to 11!&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=Yvn7liNioto"&gt;Damian Edwards'&lt;/a&gt; Day 2 session was a live coding tour of file-based apps, starting with the basics from .NET 10 and moving on to what landed in .NET 11. No slides, just code, which I always appreciate.&lt;/p&gt;
+&lt;p&gt;The part that made me smile was when Damian opened a &lt;code&gt;cake.cs&lt;/code&gt; file. I'm one of the lead maintainers of Cake, so seeing it on a .NET Conf stage was nice recognition. It was great to see community projects like Cake, Humanizer and Spectre.Console getting airtime across the sessions, not just in their own talks.&lt;/p&gt;
+&lt;h2 id="the-rest-of-the-roundup"&gt;The rest of the roundup&lt;/h2&gt;
+&lt;p&gt;Beyond the two favorites, a handful of community projects showed up across the sessions.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Rx.NET&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=OJl-hgGrQg8"&gt;Ian Griffiths&lt;/a&gt; talked about where Async Rx.NET is today and what's planned next. It's part of the .NET Foundation Rx.NET project, and it's a good reminder that Rx is still very much alive.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Oqtane and DNN&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=PURTGbu6q_Y"&gt;Shaun Walker&lt;/a&gt; introduced BlazorKit, which is built on Oqtane, a Blazor application framework. He also gave a bit of history on DNN, which he started back in 2003 and which is still widely used today.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Verify and FsCheck&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=Yd_fI485naI"&gt;Davide Bellone's&lt;/a&gt; talk on unit tests not being enough covers snapshot tests with Verify and property-based tests with FsCheck, all on top of xUnit. If you've ever stared at a large expected object in a test, this one is worth your time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Orchard Core&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=Xclc_0sYZ5A"&gt;Zoltán Lehóczky's&lt;/a&gt; session on end-to-end testing uses an Orchard Core site as the demo app, combining xUnit, Selenium, accessibility checks with axe and security scanning with ZAP.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NUnit&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=k_DUJR6Zhrc"&gt;Jeffrey Palermo&lt;/a&gt; mentioned that he still uses NUnit, in this case for architecture tests that check patterns rather than behavior.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Polly&lt;/strong&gt;: &lt;a href="https://www.youtube.com/watch?v=bEaK4JIGuTc"&gt;Marc Gravell's&lt;/a&gt; SE.Redis talk compares retries inside the library with retries you'd normally add using Polly. His argument is that the library has more context about what's going on, so it can retry when it's safe rather than just failing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="other-favorites-from.net-conf"&gt;Other favorites from .NET Conf&lt;/h2&gt;
+&lt;p&gt;A few more sessions that stuck with me, beyond the community ones mentioned.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://youtu.be/ls0rNrJsnkY"&gt;What's new in C#&lt;/a&gt;&lt;/strong&gt;: Union types and &lt;code&gt;closed&lt;/code&gt; classes for exhaustive pattern matching, plus labeled &lt;code&gt;break&lt;/code&gt;/&lt;code&gt;continue&lt;/code&gt; and &lt;code&gt;with&lt;/code&gt; args in collection expressions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://youtu.be/d_2bTXnJQqQ"&gt;Moving &lt;code&gt;dotnet&lt;/code&gt; Ahead (of Time)!&lt;/a&gt;&lt;/strong&gt;: Core CLI commands running as Native AOT for snappier execution, plus deduplicated SDK downloads.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;a href="https://youtu.be/9WDTK828qtg"&gt;More Processes, More Problems: how to speed up your builds with Multithreaded MSBuild&lt;/a&gt;&lt;/strong&gt;: In-process worker threads (&lt;code&gt;-mt&lt;/code&gt;) drastically speeding up cold and incremental builds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="closing-thoughts"&gt;Closing thoughts&lt;/h2&gt;
+&lt;p&gt;What I took away is that community projects are part of the core of the .NET ecosystem. Most are maintained by volunteers, often with little thanks, so it was great to see them show up in the demos, the testing talks, and the tools people use every day, even when the session itself was about something else. Watching the sessions on demand is the best way to see that for yourself, and the full &lt;a href="https://www.youtube.com/playlist?list=PLJL9Ln_f6sGM"&gt;.NET Conf 2026 playlist&lt;/a&gt; is there whenever you have time.&lt;/p&gt;
+&lt;p&gt;A big thank you to all the maintainers of .NET community projects. The hours spent on issues, pull requests, documentation, and releases mostly go unseen, yet they are what keep these projects alive for the rest of us. Thank you for your service.&lt;/p&gt;
+</content:encoded>
+			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
+		</item>
 		<item>
 			<title>Taking control of your digital legacy</title>
 			<link>https://www.devlead.se/posts/2026/2026-10-01-taking-control-of-your-digital-legacy</link>
@@ -1269,373 +1308,6 @@ One workaround is to move folders into the root of drives or create shorter name
 &lt;p&gt;By following these steps, you can avoid the common pitfalls associated with long file and directory names in your Git repositories on Windows.&lt;/p&gt;
 &lt;h3 id="disclaimer"&gt;Disclaimer&lt;/h3&gt;
 &lt;p&gt;This isn't a silver bullet. While enabling long paths in Windows and Git helps in most scenarios, it's not a complete solution for all situations. Some workloads in Visual Studio can still encounter issues, particularly when paths are passed to other processes like legacy .NET Framework-based tools. If this is your process, you might want to consider using the &lt;a href="https://www.nuget.org/packages/Pri.LongPath"&gt;Pri.LongPath NuGet package&lt;/a&gt;, which provides drop-in replacements for System.IO APIs that handle long paths correctly.&lt;/p&gt;
-</content:encoded>
-			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
-		</item>
-		<item>
-			<title>Introducing Devlead.Testing.MockHttp</title>
-			<link>https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing</link>
-			<description>An opinionated .NET source package for mocking HTTP client requests</description>
-			<author>devlead</author>
-			<enclosure url="https://cdn.devlead.se/clipimg-vscode/2025/02/15/48b2ec90-3c5d-4bfb-9d12-838867e50011.png?sv=2023-01-03&amp;st=2025-02-15T20%253A33%253A23Z&amp;se=2031-02-16T20%253A33%253A00Z&amp;sr=b&amp;sp=r&amp;sig=OqeViFR%252B2YKVMXEVKWn6wC0g%252B3NtrxfUcfDS%252FASFOjY%253D" length="0" type="image" />
-			<guid>https://www.devlead.se/posts/2025/2025-02-16-introducing-mockhttp-testing</guid>
-			<pubDate>Sun, 16 Feb 2025 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;There are undoubtedly many sophisticated and comprehensive solutions out there for mocking HTTP requests in .NET applications. However, I found myself with a very specific need: I wanted a lightweight, low-friction way to mock third-party HTTP APIs within my unit tests, without a lot of ceremony or complexity. I needed something that was &amp;quot;good enough&amp;quot; for my use case, providing in-memory request/response simulation that would let me validate my HTTP client interactions.&lt;/p&gt;
-&lt;p&gt;That's why I created Devlead.Testing.MockHttp. It's not trying to be the most feature-complete or elegant solution; it simply aims to solve this specific testing scenario in a straightforward way, with a minimum of ceremony, mimicking how the tested code would be used in a real application. If you have similar needs for basic HTTP mocking in your unit tests, this might be useful for you too.&lt;/p&gt;
-&lt;p&gt;Even though it has a fairly limited scope, it still enables testing of a wide range of scenarios, i.e., validating request headers, status codes, authentication, and even a small state machine for testing retry logic/throttling and requiring certain requests to be made before others.&lt;/p&gt;
-&lt;h2 id="overview-diagram"&gt;Overview diagram&lt;/h2&gt;
-&lt;div class="mermaid"&gt;graph TB
-    
-    subgraph unit["Unit test"]
-        direction TB
-        Test1 &amp;lt;--"GET Index.html"--&gt; testioc
-        Test2 &amp;lt;--"POST Api.json"--&gt; testioc 
-        Test3 &amp;lt;--"PUT SecretApi.json"--&gt; testioc
-    end
-
-    subgraph testioc["ServiceProviderFixture&amp;amp;nbsp;(Test&amp;amp;nbsp;Inversion&amp;amp;nbsp;of&amp;amp;nbsp;Control&amp;amp;nbsp;Container)"]
-        direction TB
-        MyService{{"MyService(HttpClient&amp;amp;nbsp;client)"}}
-        Mock{{"MockHttpClient:HttpClient&amp;lt;br/&gt;MockHttpClientFactory:IHttpClientFactory&amp;lt;br/&gt;MockHttpMessageHandlerFactory:IHttpMessageHandlerFactory"}}
-        MyService &amp;lt;--&gt; Mock
-    end
-
-    subgraph mockhttp["Router"]
-        direction TB
-        Router&amp;#64;{ shape: procs, label: "HttpRequestMessage&amp;lt;br/&gt;to&amp;lt;br/&gt;HttpResponseMessage"}
-    end
-
-    subgraph assembly["Assembly&amp;amp;nbsp;Embedded&amp;amp;nbsp;Resources"]
-        direction BT 
-        Routes["Routes.json"]    
-        Index["Index.html"]
-        Api&amp;#64;{ shape: doc, label: "Api.json"}
-        SecretApi&amp;#64;{ shape: doc, label: "SecretApi.json"}
-        Index --&gt; Routes  
-        Api --&gt; Routes
-        SecretApi --&gt; Routes
-    end
-
-    testioc &amp;lt;--&gt; mockhttp
-    mockhttp &amp;lt;-- Routes&amp;lt;/br&gt;configuration --&gt; assembly
-&lt;/div&gt;
-&lt;h2 id="dependency-injection-in-unit-tests"&gt;Dependency injection in unit tests?&lt;/h2&gt;
-&lt;p&gt;My goal was to ensure that the unit test for constructing fixtures and object code closely resembles how they are used in real applications. For instance, if resolving your HTTP client is simply done with &lt;code&gt;AddHttpClient&amp;lt;MyService&amp;gt;()&lt;/code&gt; in the application, then that should be all that's needed for it to be resolved in tests. By using an IOC container to resolve the services, it ensures that the same logic to construct the services is used in the tests as in the application. It also makes tests more resilient to changes in the service construction logic, especially if you use common extension methods to configure the services.&lt;/p&gt;
-&lt;p&gt;Let's walk through an example of that.&lt;/p&gt;
-&lt;h3 id="example-service"&gt;Example Service&lt;/h3&gt;
-&lt;p&gt;The service is a simple class that uses an &lt;code&gt;HttpClient&lt;/code&gt; to fetch data from a couple of different endpoints.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyService(HttpClient httpClient)
-{
-    public async Task&amp;lt;string&amp;gt; GetData()
-    {
-        var response = await httpClient.GetAsync(&amp;quot;https://example.com/index.txt&amp;quot;);
-        return await response.Content.ReadAsStringAsync();
-    }
-
-    public async Task&amp;lt;User?&amp;gt; GetSecret()
-    {
-        return await httpClient.GetFromJsonAsync&amp;lt;User&amp;gt;(&amp;quot;https://example.com/login/secret.json&amp;quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id="example-unit-test"&gt;Example Unit Test&lt;/h3&gt;
-&lt;p&gt;The unit tests below are NUnit tests that verify the behavior of the &lt;code&gt;MyService&lt;/code&gt; class using &lt;code&gt;Devlead.Testing.MockHttp.Tests&lt;/code&gt; provided &lt;code&gt;ServiceProviderFixture&lt;/code&gt; to resolve the service. Methods are called as usual, and the results are snapshotted using &lt;a href="https://github.com/VerifyTests/Verify"&gt;Verify&lt;/a&gt;. Any exceptions or changes in the response are asserted and will fail the test.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MyServiceTests
-{
-    [Test]
-    public async Task GetData()
-    {
-        // Given
-        var myService = ServiceProviderFixture.GetRequiredService&amp;lt;MyService&amp;gt;();
-
-        // When
-        var result = await myService.GetData();
-
-        // Then
-        await Verify(result);
-    }
-
-    [Test]
-    public async Task GetUnauthorizedSecret()
-    {
-        // Given
-        var myService = ServiceProviderFixture.GetRequiredService&amp;lt;MyService&amp;gt;();
-
-        // When 
-        var result = Assert.CatchAsync&amp;lt;HttpRequestException&amp;gt;(myService.GetSecret);
-
-        // Then
-        await Verify(result);
-    }
-
-    [Test]
-    public async Task GetSecret()
-    {
-        // Given
-        var myService = ServiceProviderFixture.GetRequiredService&amp;lt;MyService&amp;gt;(
-                            configure =&amp;gt; configure.ConfigureMockHttpClient&amp;lt;Constants&amp;gt;(
-                                            client =&amp;gt; client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(
-                                                &amp;quot;Bearer&amp;quot;,
-                                                &amp;quot;AccessToken&amp;quot;
-                                                )
-                                        )
-                            );
-
-        // When
-        var result = await myService.GetSecret();
-
-        // Then
-        await Verify(result);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id="registering-the-service"&gt;Registering the service&lt;/h3&gt;
-&lt;p&gt;The project provides a &lt;code&gt;ServiceProviderFixture&lt;/code&gt; partial class, which contains IOC helpers and a partial method &lt;code&gt;InitServiceProvider&lt;/code&gt; for you to implement to register your own registrations and any of their dependencies. In theory, your project could have multiple mocked routes within the same project, and &lt;code&gt;.AddMockHttpClient&amp;lt;Constants&amp;gt;()&lt;/code&gt; below picks up the routes from the assembly embedded resources relative to the type parameter &lt;code&gt;Constants&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public static partial class ServiceProviderFixture
-{
-    static partial void InitServiceProvider(IServiceCollection services)
-    {
-        services.AddHttpClient&amp;lt;MyService&amp;gt;()
-                .AddMockHttpClient&amp;lt;Constants&amp;gt;();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Services and instances registered in the &lt;code&gt;InitServiceProvider&lt;/code&gt; method will be available for all unit tests and can be resolved using the &lt;code&gt;ServiceProviderFixture.GetRequiredService&amp;lt;T&amp;gt;()&lt;/code&gt; method, as shown in the example unit test above. You can also register instances/services for a specific test or even configure the registrations using a delegate, as shown in the &lt;code&gt;GetSecret&lt;/code&gt; test.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;GetRequiredService&lt;/code&gt; can resolve up to seven different types by passing one to seven type arguments, and each call to &lt;code&gt;GetRequiredService&lt;/code&gt; will create a new separate isolated IOC container instance, ensuring that each test can have its own isolated dependencies.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;var myService = ServiceProviderFixture
-                    .GetRequiredService&amp;lt;MyService&amp;gt;();
-
-var (
-        myService,
-        myService2
-    ) = ServiceProviderFixture
-            .GetRequiredService&amp;lt;MyService, MyService2&amp;gt;();
-
-...
-
-var (
-        myService,
-        myService2,
-        myService3,
-        myService4,
-        myService5,
-        myService6,
-        myService7
-    ) = ServiceProviderFixture
-            .GetRequiredService&amp;lt;MyService, MyService2, MyService3, MyService4, MyService5, MyService6, MyService7&amp;gt;();
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This makes it easy to resolve multiple services in a single test or even resolve the same service multiple times with different configurations.&lt;/p&gt;
-&lt;p&gt;For example, resolving a &lt;code&gt;TimeProvider&lt;/code&gt; for testing date/time-related functionality and your service that uses it.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;// Given
-var (
-        timeProvider,
-        myService
-    ) = ServiceProviderFixture
-            .GetRequiredService&amp;lt;FakeTimeProvider, MyService&amp;gt;();
-
-// When
-var result = myService.GetData();
-var cachedResult = myService.GetData();
-timeProvider.Advance(TimeSpan.FromDays(1));
-var uncachedResult = myService.GetData();
-
-// Then
-await Verify(
-    new {
-        result,
-        cachedResult,
-        uncachedResult
-    }
-);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id="registering-routes"&gt;Registering routes&lt;/h3&gt;
-&lt;p&gt;Routes are configured using the &lt;code&gt;Routes.json&lt;/code&gt; file, which is embedded as an assembly resource. The file is used to configure the &lt;code&gt;Router&lt;/code&gt;, which is responsible for matching incoming requests to the correct response. The file is placed in a &amp;quot;Routes&amp;quot; folder relative to the type parameter used in &lt;code&gt;.AddMockHttpClient&amp;lt;T&amp;gt;()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The example routes file below provides two endpoints available via GET requests. The secret endpoint requires an access token in the Authorization header, while the index endpoint does not.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;[
-  {
-    &amp;quot;Request&amp;quot;: {
-      &amp;quot;Methods&amp;quot;: [
-        {
-          &amp;quot;Method&amp;quot;: &amp;quot;GET&amp;quot;
-        }
-      ],
-      &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://example.com/login/secret.json&amp;quot;
-    },
-    &amp;quot;Responses&amp;quot;: [
-      {
-        &amp;quot;RequestHeaders&amp;quot;: {},
-        &amp;quot;ContentResource&amp;quot;: &amp;quot;Example.Login.Secret.json&amp;quot;,
-        &amp;quot;ContentType&amp;quot;: &amp;quot;application/json&amp;quot;,
-        &amp;quot;ContentHeaders&amp;quot;: {},
-        &amp;quot;StatusCode&amp;quot;: 200
-      }
-    ],
-    &amp;quot;Authorization&amp;quot;: {
-      &amp;quot;Authorization&amp;quot;: [
-        &amp;quot;Bearer AccessToken&amp;quot;
-      ]
-    }
-  },
-  {
-    &amp;quot;Request&amp;quot;: {
-      &amp;quot;Methods&amp;quot;: [
-        {
-          &amp;quot;Method&amp;quot;: &amp;quot;GET&amp;quot;
-        }
-      ],
-      &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://example.com/index.txt&amp;quot;
-    },
-    &amp;quot;Responses&amp;quot;: [
-      {
-        &amp;quot;RequestHeaders&amp;quot;: {},
-        &amp;quot;ContentResource&amp;quot;: &amp;quot;Example.Index.txt&amp;quot;,
-        &amp;quot;ContentType&amp;quot;: &amp;quot;text/plain&amp;quot;,
-        &amp;quot;ContentHeaders&amp;quot;: {},
-        &amp;quot;StatusCode&amp;quot;: 200
-      }
-    ]
-  }
-]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;Router&lt;/code&gt; will match the request to the correct response based on the request method and absolute URI. If the request doesn't match any of the routes, a 404 Not Found response is returned. If authentication is required, the &lt;code&gt;Authorization&lt;/code&gt; section is used to validate the request headers against the configured values, and a 401 Unauthorized response is returned if it doesn't match.&lt;/p&gt;
-&lt;h3 id="route-content"&gt;Route content&lt;/h3&gt;
-&lt;p&gt;The content of the response is fetched from the assembly embedded resources, which is configured using the &lt;code&gt;ContentResource&lt;/code&gt; property. The content is read as a stream and converted to the appropriate content type. This means that the content can be a JSON file, a text file, an image, or even a binary file. The files specified in &lt;code&gt;ContentResource&lt;/code&gt; are relative to the &lt;code&gt;Routes.json&lt;/code&gt; file, i.e., the above configuration would have a folder structure like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Constants.cs
-Resources/Routes.json
-Resources/Example/Index.txt
-Resources/Example/Login/Secret.json
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As with any embedded resource, directory separators are normalized to &lt;code&gt;.&lt;/code&gt; in the &lt;code&gt;ContentResource&lt;/code&gt; path. For example, &lt;code&gt;Example/Login/Secret.json&lt;/code&gt; above would be &lt;code&gt;Example.Login.Secret.json&lt;/code&gt; in the &lt;code&gt;Routes.json&lt;/code&gt; file.&lt;/p&gt;
-&lt;p&gt;In your &lt;code&gt;.csproj&lt;/code&gt;, it would be configured something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;ItemGroup&amp;gt;
-    &amp;lt;None Remove=&amp;quot;Resources\Example\index.txt&amp;quot; /&amp;gt;
-    &amp;lt;None Remove=&amp;quot;Resources\Example\Login\Secret.json&amp;quot; /&amp;gt;
-    &amp;lt;None Remove=&amp;quot;Resources\Routes.json&amp;quot; /&amp;gt;
-&amp;lt;/ItemGroup&amp;gt;
-
-&amp;lt;ItemGroup&amp;gt;
-    &amp;lt;EmbeddedResource Include=&amp;quot;Resources\Example\Index.txt&amp;quot; /&amp;gt;
-    &amp;lt;EmbeddedResource Include=&amp;quot;Resources\Routes.json&amp;quot; /&amp;gt;
-    &amp;lt;EmbeddedResource Include=&amp;quot;Resources\Example\Login\Secret.json&amp;quot; /&amp;gt;
-&amp;lt;/ItemGroup&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="advanced-scenarios"&gt;Advanced scenarios&lt;/h2&gt;
-&lt;h3 id="state-machine"&gt;State machine&lt;/h3&gt;
-&lt;p&gt;Routes can be configured to require certain requests to be made before others. This is done by setting the request to disabled:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;...
-    &amp;quot;Request&amp;quot;: {
-      &amp;quot;Methods&amp;quot;: [
-        {
-          &amp;quot;Method&amp;quot;: &amp;quot;HEAD&amp;quot;
-        }
-      ],
-      &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://azurestorageaccount.blob.core.windows.net/AzureStorageAccountContainer/NewFile.json&amp;quot;,
-      &amp;quot;Disabled&amp;quot;: true
-    },
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In another route response, configure it to enable the above request using the &lt;code&gt;EnableRequests&lt;/code&gt; property:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;...
-    &amp;quot;Request&amp;quot;: {
-      &amp;quot;Methods&amp;quot;: [
-        {
-          &amp;quot;Method&amp;quot;: &amp;quot;PUT&amp;quot;
-        }
-      ],
-      &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://azurestorageaccount.blob.core.windows.net/AzureStorageAccountContainer/NewFile.json&amp;quot;
-    },
-    &amp;quot;Responses&amp;quot;: [
-      {
-        &amp;quot;RequestHeaders&amp;quot;: {},
-        &amp;quot;ContentType&amp;quot;: &amp;quot;application/json&amp;quot;,
-        &amp;quot;ContentResource&amp;quot;: &amp;quot;Commands.ArchiveCommandTests.NewFiles.NewFile.json&amp;quot;,
-        &amp;quot;StatusCode&amp;quot;: 201,
-        &amp;quot;EnableRequests&amp;quot;: [
-          {
-            &amp;quot;Method&amp;quot;: &amp;quot;HEAD&amp;quot;,
-            &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://azurestorageaccount.blob.core.windows.net/AzureStorageAccountContainer/NewFile.json&amp;quot;
-          }
-        ]
-      }
-    ],
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;So, the HEAD request will result in a 404 Not Found response, but the PUT request will result in a 201 Created response, and the HEAD request will be enabled.&lt;/p&gt;
-&lt;h3 id="throttling"&gt;Throttling&lt;/h3&gt;
-&lt;p&gt;Throttling can be configured by calling the &lt;code&gt;SimulateRetryAfter&lt;/code&gt; extension while registering your services.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;// Given
-var (httpClient, timeProvider) = ServiceProviderFixture
-                                .GetRequiredService&amp;lt;HttpClient, FakeTimeProvider&amp;gt;(
-                                    services =&amp;gt; services.SimulateRetryAfter&amp;lt;Constants&amp;gt;(
-                                        rateLimitOccurrenceCount: rateLimitOccurrenceCount,
-                                        retryAfterInterval: TimeSpan.FromMinutes(1)
-                                    )
-                                );
-TimeSpan timeAdvance = TimeSpan.FromMinutes(timeMinutesAdvance);
-var responses = new List&amp;lt;HttpResponseMessage&amp;gt;();
-
-// When
-for (int i = 0; i &amp;lt;= rateLimitOccurrenceCount * 2; i++, timeProvider.Advance(timeAdvance))
-{
-    responses.Add(await httpClient.GetAsync(&amp;quot;https://example.com/index.txt&amp;quot;));
-}
-
-// Then
-await Verify(responses);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The above example will simulate a rate limit by advancing the time and checking the response status code. &lt;code&gt;rateLimitOccurrenceCount&lt;/code&gt; is the number of requests that will be allowed before the rate limit is applied, and &lt;code&gt;retryAfterInterval&lt;/code&gt; is for how long the rate limit will be applied once it occurs.&lt;/p&gt;
-&lt;h3 id="request-headers"&gt;Request headers&lt;/h3&gt;
-&lt;p&gt;Request headers can be configured to validate the request headers against the configured values, and different responses can be configured based on the request headers.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;...
-  {
-    &amp;quot;Request&amp;quot;: {
-      &amp;quot;Methods&amp;quot;: [
-        {
-          &amp;quot;Method&amp;quot;: &amp;quot;PUT&amp;quot;
-        }
-      ],
-      &amp;quot;AbsoluteUri&amp;quot;: &amp;quot;https://azurestorageaccount.blob.core.windows.net/AzureStorageAccountContainer/NewFile.json&amp;quot;
-    },
-    &amp;quot;Responses&amp;quot;: [
-      {
-        &amp;quot;RequestHeaders&amp;quot;: {
-          &amp;quot;Content-Type&amp;quot;: [ &amp;quot;application/json&amp;quot; ],
-          &amp;quot;Content-Length&amp;quot;: [ &amp;quot;9&amp;quot; ],
-          &amp;quot;x-ms-blob-type&amp;quot;: [ &amp;quot;BlockBlob&amp;quot; ],
-          &amp;quot;Content-MD5&amp;quot;: [ &amp;quot;uasiD3l1Rg7NApFvCBOV1Q==&amp;quot; ]
-        },
-        &amp;quot;ContentType&amp;quot;: &amp;quot;application/json&amp;quot;,
-        &amp;quot;ContentResource&amp;quot;: &amp;quot;Commands.ArchiveCommandTests.NewFiles.NewFile.json&amp;quot;,
-        &amp;quot;ContentHeaders&amp;quot;: {},
-        &amp;quot;StatusCode&amp;quot;: 201
-      }
-    ],
-    &amp;quot;Authorization&amp;quot;: {
-      &amp;quot;Authorization&amp;quot;: [
-        &amp;quot;Bearer AccessToken&amp;quot;
-      ]
-    }
-  },
-...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the above example, a 201 Created response is returned for PUT requests to the storage account blob container, but the request headers are validated against the configured values.&lt;/p&gt;
-&lt;h3 id="md5-checksum"&gt;MD5 checksum&lt;/h3&gt;
-&lt;p&gt;The Content-MD5 header is calculated and returned for all content responses.&lt;/p&gt;
-&lt;h2 id="getting-started"&gt;Getting started&lt;/h2&gt;
-&lt;p&gt;The package is available on &lt;a href="https://www.nuget.org/packages/Devlead.Testing.MockHttp/"&gt;NuGet&lt;/a&gt; and can be installed using the following command:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dotnet add package Devlead.Testing.MockHttp
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The package is a source package and is supported on .NET 8 and above.&lt;/p&gt;
-&lt;h3 id="example-projects"&gt;Example projects&lt;/h3&gt;
-&lt;p&gt;The package is used in the following example projects:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://github.com/devlead/Devlead.Testing.MockHttp/tree/main/src/Devlead.Testing.MockHttp.Tests"&gt;Devlead.Testing.MockHttp.Tests&lt;/a&gt; - contains examples of many of the features.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/devlead/Blobify"&gt;Blobify&lt;/a&gt; - its tests contain examples like enabling requests, request headers filtering, MD5 checksum validation, and more.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="contributing"&gt;Contributing&lt;/h2&gt;
-&lt;p&gt;The project is open source, and contributions are welcome. Please feel free to submit a PR or an issue. You'll find the project on &lt;a href="https://github.com/devlead/Devlead.Testing.MockHttp"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;I hope you find this package useful. Feel free to let me know if you have any feedback or suggestions.&lt;/p&gt;
 </content:encoded>
 			<comments xmlns="http://purl.org/rss/1.0/modules/slash/">0</comments>
 		</item>
